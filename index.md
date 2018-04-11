@@ -6,4 +6,14 @@ layout: page
 title: Home
 ---
 <br />
-Content
+<h3>Introduction</h3>
+<p>
+This is a collection of Python machine learning examples for reference. Attribution is
+provided.
+</p>
+<h3>Recent Posts</h3>
+<ul>
+    {% for post in site.posts limit:5 %}
+      <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
