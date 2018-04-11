@@ -6,7 +6,7 @@ layout: page
 title: Home
 ---
 <br />
-<h3>Introduction</h3>
+<h3>Hello World</h3>
 <p>
 This is a collection of Python machine learning examples that I'm trying to get
 my head around. Attribution is provided with many thanks.
