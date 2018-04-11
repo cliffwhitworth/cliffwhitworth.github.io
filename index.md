@@ -8,8 +8,8 @@ title: Home
 <br />
 <h3>Introduction</h3>
 <p>
-This is a collection of Python machine learning examples for reference. Attribution is
-provided.
+This is a collection of Python machine learning examples that I'm trying to get
+my head around. Attribution is provided with many thanks.
 </p>
 <h3>Recent Posts</h3>
 <ul>
