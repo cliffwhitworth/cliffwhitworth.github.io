@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Simple Linear Regression"
-date:   2018-04-06
+date:   2018-04-01
 categories: Regression
 ---
 <br />
@@ -37,10 +37,26 @@ var = sum([(row[0]-x_mean)**2 for row in dataset]) / (len(dataset) - 1)
 
 Bhat = covar / var
 Ahat = y_mean - (Bhat * x_mean)
+
+// from scipy import stats
+// from statistics import variance
+
+x_array = [row[0] for row in dataset]
+y_array = [row[1] for row in dataset]
+
+xy_stacked = np.stack((x_array, y_array))
+print('Covariance: ', np.cov(xy_stacked)[0][1])
+print('Statistics variance: ', variance(x_array))
+print('Numpy variance (sample): ', np.var(x_array,ddof=1))
+print('Numpy covariance: ', np.cov(xy_stacked)[0][1]/variance(x_array))
+print ('Stats Pearson (Rxy): ', stats.pearsonr(x_array, y_array)[0])
+print ('Numpy CorrCoef: ', np.corrcoef(x_array, y_array)[0,1])
+print ('Sx: ', np.std(x_array, axis=0))
+print ('Sy: ', np.std(y_array, axis=0))
 {% endhighlight %}
 
 <br />
-<h4>Example 2 using Dot Product</h4>
+<h4>Example 2 Using Dot Product</h4>
 <br />
 Consider yhat = a + bx
 <br />
@@ -60,4 +76,15 @@ altY = np.array(y_values)
 denominator = altX.dot(altX) - altX.mean() * altX.sum()
 a = ( altX.dot(altY) - altY.mean() * altX.sum() ) / denominator
 b = ( altY.mean() * altX.dot(altX) - altX.mean() * altX.dot(altY) ) / denominator
+{% endhighlight %}
+
+<br />
+<h4>Example 3 Using Linear Algebra</h4>
+<br />
+<p>Code credit: <a href="https://www.kdnuggets.com/2016/11/linear-regression-least-squares-matrix-multiplication-concise-technical-overview.html">https://www.kdnuggets.com/2016/11/linear-regression-least-squares-matrix-multiplication-concise-technical-overview.html</a>
+</p>
+{% highlight ruby %}
+x_stack = np.vstack(x_array)
+x_stack = np.append(arr = np.ones((5, 1)).astype(int), values = x_stack, axis = 1)
+print('w = ', np.linalg.inv(x_stack.T.dot(x_stack)).dot(x_stack.T).dot(Y_t))
 {% endhighlight %}
