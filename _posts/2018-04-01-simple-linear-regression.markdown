@@ -17,34 +17,36 @@ dataset = [[1, 1], [2, 3], [3, 2], [4, 3], [5, 5]]
 x_mean = sum([row[0] for row in dataset])/float(len(dataset))
 y_mean = sum([row[1] for row in dataset])/float(len(dataset))
 
-print('Iterations for covar (numerator)')
-covarn = 0
+covar = 0
 for i in range(len(dataset)):
     x = dataset[i][0]
     y = dataset[i][1]
     covar_iteration = ((x - x_mean) * (y -y_mean)) / (len(dataset) - 1)
-    covarn += covar_iteration
+    covar += covar_iteration
 
-print('Iterations for var (denominator)')
-test_var = 0
+using list comprehension: sum([(row[0] - x_mean) * (row[1] - y_mean) for row in dataset]) / (len(dataset) - 1)
+
+var = 0
 for i in range(len(dataset)):
     x = dataset[i][0]
     var_iteration = (x - x_mean)**2  / (len(dataset) - 1)
-    test_var += var_iteration
+    var += var_iteration
 
-covar = sum([(row[0] - x_mean) * (row[1] - y_mean) for row in dataset]) / (len(dataset) - 1)
-var = sum([(row[0]-x_mean)**2 for row in dataset]) / (len(dataset) - 1)
+using list comprehension: sum([(row[0]-x_mean)**2 for row in dataset]) / (len(dataset) - 1)
 
 Bhat = covar / var
 Ahat = y_mean - (Bhat * x_mean)
 
-// from scipy import stats
-// from statistics import variance
+# from scipy import stats
+# from statistics import variance
 
 x_array = [row[0] for row in dataset]
 y_array = [row[1] for row in dataset]
 
+Join a sequence of arrays along a new axis.
 xy_stacked = np.stack((x_array, y_array))
+
+Comparisons of Numpy with other libraries
 print('Covariance: ', np.cov(xy_stacked)[0][1])
 print('Statistics variance: ', variance(x_array))
 print('Numpy variance (sample): ', np.var(x_array,ddof=1))
