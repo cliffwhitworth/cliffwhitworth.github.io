@@ -37,24 +37,7 @@ using list comprehension: sum([(row[0]-x_mean)**2 for row in dataset]) / (len(da
 Bhat = covar / var
 Ahat = y_mean - (Bhat * x_mean)
 
-# from scipy import stats
-# from statistics import variance
-
-x_array = [row[0] for row in dataset]
-y_array = [row[1] for row in dataset]
-
-Join a sequence of arrays along a new axis.
-xy_stacked = np.stack((x_array, y_array))
-
-Comparisons of Numpy with other libraries
-print('Covariance: ', np.cov(xy_stacked)[0][1])
-print('Statistics variance: ', variance(x_array))
-print('Numpy variance (sample): ', np.var(x_array,ddof=1))
-print('Numpy covariance: ', np.cov(xy_stacked)[0][1]/variance(x_array))
-print ('Stats Pearson (Rxy): ', stats.pearsonr(x_array, y_array)[0])
-print ('Numpy CorrCoef: ', np.corrcoef(x_array, y_array)[0,1])
-print ('Sx: ', np.std(x_array, axis=0))
-print ('Sy: ', np.std(y_array, axis=0))
+# See stats for sample correlation coefficient, uncorrected sample standard deviations, sample variance, and sample covariance
 {% endhighlight %}
 
 <br />

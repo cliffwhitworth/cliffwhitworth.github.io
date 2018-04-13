@@ -8,7 +8,7 @@ title: Home
 <br />
 <h3>Hello World</h3>
 <p>
-Here are my notes on machine learning for easy reference.
+My Notes
 </p>
 <h3>Recent Posts</h3>
 <ul>
