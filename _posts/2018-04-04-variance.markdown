@@ -8,7 +8,7 @@ categories: Stats
 <h4>Sample Variance</h4>
 
 <a href="https://en.wikipedia.org/wiki/Variance#Sample_variance">
-https://en.wikipedia.org/wiki/Variance#Sample_variance
+Wikipedia
 </a>
 
 {% highlight ruby %}

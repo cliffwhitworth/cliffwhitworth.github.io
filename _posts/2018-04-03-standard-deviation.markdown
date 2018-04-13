@@ -8,7 +8,7 @@ categories: Stats
 <h4>Uncorrected Sample Standard Deviation</h4>
 
 <a href="https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance">
-https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance
+Wikipedia
 </a>
 
 {% highlight ruby %}

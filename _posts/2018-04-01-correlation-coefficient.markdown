@@ -8,7 +8,7 @@ categories: Stats
 <h4>Sample Correlation Coefficient</h4>
 
 <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence#Pearson's_product-moment_coefficient">
-https://en.wikipedia.org/wiki/Correlation_and_dependence#Pearson's_product-moment_coefficient
+Wikipedia
 </a>
 </p>
 

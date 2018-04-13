@@ -66,10 +66,12 @@ b = ( altY.mean() * altX.dot(altX) - altX.mean() * altX.dot(altY) ) / denominato
 <br />
 <h4>Example 3 Using Linear Algebra</h4>
 <br />
-<p>Code credit: <a href="https://www.kdnuggets.com/2016/11/linear-regression-least-squares-matrix-multiplication-concise-technical-overview.html">https://www.kdnuggets.com/2016/11/linear-regression-least-squares-matrix-multiplication-concise-technical-overview.html</a>
+<p>Code credit: <a href="https://www.kdnuggets.com/2016/11/linear-regression-least-squares-matrix-multiplication-concise-technical-overview.html">KDNuggets</a>
 </p>
 {% highlight ruby %}
 x_stack = np.vstack(x_array)
 x_stack = np.append(arr = np.ones((5, 1)).astype(int), values = x_stack, axis = 1)
 print('w = ', np.linalg.inv(x_stack.T.dot(x_stack)).dot(x_stack.T).dot(Y_t))
+or
+print('w = ', np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Y))
 {% endhighlight %}
