@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Gradient Descent"
-date:   2018-04-02
+date:   2018-04-03
 categories: More
 ---
 <br />

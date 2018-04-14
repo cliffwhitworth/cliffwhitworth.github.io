@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Pandas"
+date:   2018-04-10
+categories: More
+---
+<br />
+<h4>PD Read CSV iloc</h4>
+<p>Code credit:
+<br />
+<a href="https://www.udemy.com/data-analysis-with-pandas/">
+https://www.udemy.com/data-analysis-with-pandas/
+</a>
+<br />
+<a href="https://www.udemy.com/machinelearning/">
+https://www.udemy.com/machinelearning/
+</a>
+</p>
+
+{% highlight ruby %}
+
+dataset = pd.read_csv('name_of.csv')
+# iloc [rowstart:rowend,colstart:colend]
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 4].values
+
+{% endhighlight %}
