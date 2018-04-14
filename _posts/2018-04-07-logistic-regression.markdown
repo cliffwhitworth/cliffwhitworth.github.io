@@ -9,7 +9,7 @@ categories: Classification
 <p>Code credit:
 <br />
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">
-http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+Scikit-learn
 </a>
 <br />
 <a href="https://www.udemy.com/machinelearning/">

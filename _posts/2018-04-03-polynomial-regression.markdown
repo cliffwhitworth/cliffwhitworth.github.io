@@ -9,7 +9,7 @@ categories: Regression
 <p>Code credit:
 <br />
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html">
-http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.PolynomialFeatures.html
+Scikit-learn
 </a>
 <br />
 <a href="https://www.udemy.com/machinelearning/">

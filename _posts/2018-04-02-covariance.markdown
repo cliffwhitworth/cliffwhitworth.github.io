@@ -12,8 +12,6 @@ Wikipedia
 </a>
 
 {% highlight ruby %}
-# from scipy import stats
-# from statistics import variance
 
 x_array = [row[0] for row in dataset]
 y_array = [row[1] for row in dataset]
@@ -22,6 +20,5 @@ Join a sequence of arrays along a new axis.
 xy_stacked = np.stack((x_array, y_array))
 
 print('Covariance: ', np.cov(xy_stacked)[0][1])
-print('Numpy covariance: ', np.cov(xy_stacked)[0][1]/variance(x_array))
 
 {% endhighlight %}

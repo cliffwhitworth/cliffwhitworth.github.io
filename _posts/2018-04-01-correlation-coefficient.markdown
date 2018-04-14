@@ -10,7 +10,6 @@ categories: Stats
 <a href="https://en.wikipedia.org/wiki/Correlation_and_dependence#Pearson's_product-moment_coefficient">
 Wikipedia
 </a>
-</p>
 
 {% highlight ruby %}
 # from scipy import stats
