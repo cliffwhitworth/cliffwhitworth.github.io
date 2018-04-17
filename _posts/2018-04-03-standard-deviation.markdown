@@ -7,7 +7,7 @@ categories: Stats
 <br />
 <h4>Uncorrected Sample Standard Deviation</h4>
 
-<a href="https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance">
+<a href="https://en.m.wikipedia.org/wiki/Standard_deviation">
 Wikipedia
 </a>
 

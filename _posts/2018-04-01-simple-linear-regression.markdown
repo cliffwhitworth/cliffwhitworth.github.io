@@ -55,12 +55,12 @@ Image of formula from <a href="http://www.statisticshowto.com/probability-and-st
 x_values = [row[0] for row in dataset]
 y_values = [row[1] for row in dataset]
 
-altX = np.array(x_values)
-altY = np.array(y_values)
+x = np.array(x_values)
+y = np.array(y_values)
 
-denominator = altX.dot(altX) - altX.mean() * altX.sum()
-a = ( altX.dot(altY) - altY.mean() * altX.sum() ) / denominator
-b = ( altY.mean() * altX.dot(altX) - altX.mean() * altX.dot(altY) ) / denominator
+denominator = x.dot(x) - x.mean() * x.sum()
+a = ( x.dot(y) - y.mean() * x.sum() ) / denominator
+b = ( y.mean() * x.dot(x) - x.mean() * x.dot(y) ) / denominator
 {% endhighlight %}
 
 <br />
