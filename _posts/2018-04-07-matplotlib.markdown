@@ -77,10 +77,8 @@ www.kunxi.org
 <br />
 {% highlight ruby %}
 
-X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
-                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
-
-plt.figure(figsize=(8, 8))
+X1, X2 = np.meshgrid(np.arange(start = X[:, 0].min() - 1, stop = X[:, 0].max() + 1, step = 0.01),
+                     np.arange(start = X[:, 1].min() - 1, stop = X[:, 1].max() + 1, step = 0.01))
 
 #plot background colors
 ax = plt.gca()
@@ -91,8 +89,8 @@ cs2 = ax.contour(X1, X2, Z, cmap='RdBu', alpha=.6)
 plt.clabel(cs2, colors = 'k', fontsize=14)
 
 # Plot the points
-ax.plot(X_train[y_train == 0, 0], X_train[y_train == 0, 1], 'ro', label='Class 1')
-ax.plot(X_train[y_train == 1, 0], X_train[y_train == 1, 1], 'bo', label='Class 2')
+ax.plot(X[y == 0, 0], X[y == 0, 1], 'ro', label='Class 1')
+ax.plot(X[y == 1, 0], X[y == 1, 1], 'bo', label='Class 2')
 
 # make legend
 plt.legend(loc='upper left', scatterpoints=1, numpoints=1)
