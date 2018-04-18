@@ -12,8 +12,6 @@ Wikipedia
 </a>
 
 {% highlight ruby %}
-# from scipy import stats
-# from statistics import variance
 
 x_array = [row[0] for row in dataset]
 y_array = [row[1] for row in dataset]

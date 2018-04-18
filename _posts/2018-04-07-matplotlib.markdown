@@ -60,3 +60,42 @@ plt.title('Marketing')
 plt.show()
 
 {% endhighlight %}
+
+<br />
+<h4>Contour Map, Probability Grid, Decision Boundary</h4>
+<a href="https://stackoverflow.com/questions/20045994/how-do-i-plot-the-decision-boundary-of-a-regression-using-matplotlib">
+Stackoverflow
+</a>
+<br />
+<a href="https://stackoverflow.com/questions/28256058/plotting-decision-boundary-of-logistic-regression">
+Stackoverflow
+</a>
+<br />
+<a href="https://www.kunxi.org/notes/machine_learning/logistic_regression/">
+www.kunxi.org
+</a>
+<br />
+{% highlight ruby %}
+
+X1, X2 = np.meshgrid(np.arange(start = X_set[:, 0].min() - 1, stop = X_set[:, 0].max() + 1, step = 0.01),
+                     np.arange(start = X_set[:, 1].min() - 1, stop = X_set[:, 1].max() + 1, step = 0.01))
+
+plt.figure(figsize=(8, 8))
+
+#plot background colors
+ax = plt.gca()
+Z = classifier.predict_proba(np.c_[X1.ravel(), X2.ravel()])[:, 1]
+Z = Z.reshape(X1.shape)
+cs = ax.contourf(X1, X2, Z, cmap='RdBu', alpha=.2)
+cs2 = ax.contour(X1, X2, Z, cmap='RdBu', alpha=.6)
+plt.clabel(cs2, colors = 'k', fontsize=14)
+
+# Plot the points
+ax.plot(X_train[y_train == 0, 0], X_train[y_train == 0, 1], 'ro', label='Class 1')
+ax.plot(X_train[y_train == 1, 0], X_train[y_train == 1, 1], 'bo', label='Class 2')
+
+# make legend
+plt.legend(loc='upper left', scatterpoints=1, numpoints=1)
+plt.show()
+
+{% endhighlight %}
