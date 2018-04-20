@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "Metrics"
+date:   2018-04-07 04
+categories: More
+---
+
+<br />
+<h4>Accuracy Score</h4>
+<a href="https://machinelearningmastery.com/classification-accuracy-is-not-enough-more-performance-measures-you-can-use/">
+Classification Accuracy
+</a>
+<br />
+
+{% highlight ruby %}
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y, yhat))
+
+{% endhighlight %}
+
+<br />
+<h4>Classification Report</h4>
+<a href="https://classeval.wordpress.com/introduction/basic-evaluation-measures/">
+Classification Report
+</a>
+<br />
+
+{% highlight ruby %}
+
+# precision, positive predicted value = TP / (TP + FP)
+# recall, sensitivity, true positive rate = TP / (TP + FN)
+# f1-score ((.854 * 2)/1.84) https://en.wikipedia.org/wiki/F1_score
+
+from sklearn.metrics import classification_report
+print(classification_report(y, yhat))
+
+{% endhighlight %}
+
+<br />
+<h4>Confusion Matrix</h4>
+<a href="http://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/">
+Confusion Matrix Terms
+</a>
+<br />
+
+{% highlight ruby %}
+
+from sklearn.metrics import confusion_matrix
+print(confusion_matrix(y, yhat))
+
+{% endhighlight %}

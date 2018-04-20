@@ -71,7 +71,7 @@ b = ( y.mean() * x.dot(x) - x.mean() * x.dot(y) ) / denominator
 {% highlight ruby %}
 x_stack = np.vstack(x_array)
 x_stack = np.append(arr = np.ones((5, 1)).astype(int), values = x_stack, axis = 1)
-print('w = ', np.linalg.inv(x_stack.T.dot(x_stack)).dot(x_stack.T).dot(Y_t))
+print('w = ', np.linalg.inv(x_stack.T.dot(x_stack)).dot(x_stack.T).dot(Y))
 or
 print('w = ', np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Y))
 {% endhighlight %}
