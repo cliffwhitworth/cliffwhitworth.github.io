@@ -97,3 +97,58 @@ plt.legend(loc='upper left', scatterpoints=1, numpoints=1)
 plt.show()
 
 {% endhighlight %}
+
+<br />
+<h4>Bowls, Labels, Arrows, Major / Minor Ticks</h4>
+<br />
+
+{% highlight ruby %}
+
+# Start the plot
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(4,5))
+
+# Setup convex shape
+theta_grid = np.linspace(-0.5,2.5,50)
+J_grid = cost_func(theta_grid[:,np.newaxis])
+
+# The cost function as a function of its single parameter, theta.
+ax.plot(theta_grid, J_grid, 'k')
+
+# cost function plot with coloured points indicating the
+# parameters chosen and red arrows indicating the steps down the gradient.
+colors = ['b', 'g', 'm', 'c', 'orange']
+
+for j in range(1,N):
+    ax.annotate('', xy=(theta[j], J[j]), xytext=(theta[j-1], J[j-1]),
+                   arrowprops={'arrowstyle': '->', 'color': 'r', 'lw': 1},
+                   va='center', ha='center')
+
+# Labels, titles and a legend.
+ax.scatter(theta, J, c=colors)
+ax.set_xlim(-0.5,2.5)
+ax.set_ylim(0, 6)
+ax.set_xlabel(r'$\theta_1$')
+ax.set_ylabel(r'$J(\theta_1)$')
+ax.set_title('Cost Function')
+
+# major ticks every 1, minor ticks every .1
+major_yticks = np.arange(0, 6, 1)
+minor_yticks = np.arange(0, 6, .1)
+major_xticks = np.arange(-0.5, 2.5, 1)
+minor_xticks = np.arange(-0.5, 2.5, .1)
+
+ax.set_yticks(major_yticks)
+ax.set_yticks(minor_yticks, minor=True)
+ax.set_xticks(major_xticks)
+ax.set_xticks(minor_xticks, minor=True)
+
+# different settings for the grids:
+ax.grid(which='minor', alpha=0.4)
+ax.grid(which='major', alpha=1)
+
+plt.xticks(np.arange(-.5, 2.5, .5))
+plt.tight_layout()
+plt.grid(True)
+plt.show()
+
+{% endhighlight %}
