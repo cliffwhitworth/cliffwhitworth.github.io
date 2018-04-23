@@ -24,13 +24,17 @@ def cost_function(X, y, theta):
 <br />
 <h4>Cost Function Example</h4>
 
+<a href="https://scipython.com/blog/visualizing-the-gradient-descent-method/">
+Code that got this started
+</a>
+
+
 {% highlight ruby %}
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import pylab as plb
-from matplotlib import colors as mcolors
 
 def cost_func(theta):
     theta = np.atleast_2d(np.asarray(theta))

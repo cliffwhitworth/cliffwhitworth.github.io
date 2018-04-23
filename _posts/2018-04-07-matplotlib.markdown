@@ -104,6 +104,8 @@ plt.show()
 
 {% highlight ruby %}
 
+from matplotlib import colors as mcolors
+
 # Start the plot
 fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(4,5))
 
@@ -150,5 +152,73 @@ plt.xticks(np.arange(-.5, 2.5, .5))
 plt.tight_layout()
 plt.grid(True)
 plt.show()
+
+{% endhighlight %}
+
+<br />
+<h4>Contour Pyplot</h4>
+
+<a href="https://scipython.com/blog/visualizing-the-gradient-descent-method/">
+Code that got this started
+</a>
+<br />
+<a href="https://matplotlib.org/api/pyplot_api.html">
+Pyplot API
+</a>
+<br />
+{% highlight ruby %}
+
+import pylab as plb
+from matplotlib import colors as mcolors
+
+# add the bias column to X
+X = np.ones(shape=(y.size, 2))
+X[:, 1] = x
+
+# theta parameters
+thetaP = np.zeros(shape=(2, 1))
+
+# compute and display initial cost
+cost = compute_cost(X, y, thetaP)
+
+# gradient descent
+thetaP, J_history = gradient_descent(X, y, thetaP, alpha, iterations)
+
+# grid over which we will calculate J
+theta0 = np.linspace(-2, 2, 100)
+theta1 = np.linspace(-2, 2, 100)
+
+# initialize J of theta to a matrix of 0's
+Jtheta = np.zeros(shape=(theta0.size, theta1.size))
+
+# fill out J of theta
+for t1, element in enumerate(theta0):
+    for t2, element2 in enumerate(theta1):
+        thetaT = np.zeros(shape=(2, 1))
+        thetaT[0][0] = element
+        thetaT[1][0] = element2
+        Jtheta[t1, t2] = compute_cost(X, y, thetaT)
+
+# tranpose J of theta
+Jtheta = Jtheta.T
+
+# contour plotting
+plb.contour(theta0, theta1, Jtheta, np.logspace(-2, 3, 20))
+
+for j in range(1,N):
+    plb.annotate('', xy=theta[j], xytext=theta[j-1],
+                   arrowprops={'arrowstyle': '->', 'color': 'r', 'lw': 1},
+                   va='center', ha='center')
+
+plb.scatter(*zip(*theta), c=colors)
+
+plb.minorticks_on()
+plb.tick_params(axis='x', which='both')
+
+plb.xlabel(r'$\theta_0$')
+plb.ylabel(r'$\theta_1$')
+plb.scatter(thetaP[0][0], thetaP[1][0])
+plb.grid(True, which='both')
+plb.show()
 
 {% endhighlight %}
