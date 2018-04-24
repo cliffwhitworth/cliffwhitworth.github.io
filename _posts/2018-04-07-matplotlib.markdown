@@ -171,6 +171,21 @@ Pyplot API
 import pylab as plb
 from matplotlib import colors as mcolors
 
+# compute gradient descent
+def gradient_descent(X, y, theta, alpha, num_iters):
+    J_history = np.zeros(shape=(num_iters, 1))
+    for i in range(num_iters):
+        theta = theta - alpha*(1.0/y.size) * np.transpose(X).dot(X.dot(theta) - np.transpose([y]))
+        J_history[i] = compute_cost(X, y, theta)
+    return theta, J_history
+
+# compute cost for linear regression
+def compute_cost(X, y, theta):
+    J = 0
+    s = np.power((X.dot(theta) - np.transpose([y])), 2)
+    J = (1.0 / (2  *y.size)) * s.sum(axis = 0)
+    return J
+
 # add the bias column to X
 X = np.ones(shape=(y.size, 2))
 X[:, 1] = x
@@ -179,7 +194,7 @@ X[:, 1] = x
 thetaP = np.zeros(shape=(2, 1))
 
 # compute and display initial cost
-cost = compute_cost(X, y, thetaP)
+cost = cost_function(X, y, thetaP)
 
 # gradient descent
 thetaP, J_history = gradient_descent(X, y, thetaP, alpha, iterations)
@@ -220,5 +235,69 @@ plb.ylabel(r'$\theta_1$')
 plb.scatter(thetaP[0][0], thetaP[1][0])
 plb.grid(True, which='both')
 plb.show()
+
+{% endhighlight %}
+
+<br />
+<h4>A Theta Fit</h4>
+
+<a href="https://scipython.com/blog/visualizing-the-gradient-descent-method/">
+Code that got this started
+</a>
+<br />
+{% highlight ruby %}
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import colors as mcolors
+
+# dataset
+dataset = [[1, 1], [2, 3], [3, 2], [4, 3], [5, 5]]
+
+# x and y arrays
+x = np.array([row[0] for row in dataset])
+y = np.array([row[1] for row in dataset])
+
+# The plot
+fig, ax = plt.subplots(nrows=1, ncols=1, figsize=(10,5))
+ax.scatter(x, y, marker='x', s=40, color='k')
+
+def cost_function(theta1):
+    theta1 = np.atleast_2d(np.asarray(theta1))
+    return np.average((y-(x*theta1))**2, axis=1)/2
+
+# Take N steps with learning rate alpha down the steepest gradient, starting at theta1 = 0.
+N = 5
+alpha = .1
+theta = [0]
+m = 10
+
+J = [cost_function(theta[0])[0]]
+for j in range(N-1):
+    last_theta = theta[-1]
+    this_theta = last_theta - alpha / m * np.sum(((x*last_theta) - y) * x)
+    theta.append(this_theta)
+    J.append(cost_function(this_theta))
+
+# Get some colors
+colors = ['b', 'g', 'm', 'c', 'orange']
+all_colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
+for value in all_colors:
+    colors.append(value)
+
+ax.plot(x, (x*theta[0]), color=colors[0], lw=2, label=r'$\theta_1 = {:.3f}$'.format(theta[0]))
+
+for j in range(1,N):
+    ax.plot(x, (x*theta[j]), color=colors[j], lw=2, label=r'$\theta_1 = {:.3f}$'.format(theta[j]))
+
+# Labels, titles and a legend.
+ax.set_xlabel(r'$x$')
+ax.set_ylabel(r'$y$')
+ax.set_title('A Theta Fit')
+ax.legend(loc='upper left', fontsize='small')
+
+plt.tight_layout()
+plt.show()
 
 {% endhighlight %}
