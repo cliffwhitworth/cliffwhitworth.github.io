@@ -301,3 +301,68 @@ plt.tight_layout()
 plt.show()
 
 {% endhighlight %}
+
+<br />
+<h4>Convergence</h4>
+
+<a href="https://stackoverflow.com/questions/16640470/how-to-determine-the-learning-rate-and-the-variance-in-a-gradient-descent-algori">
+Convergence
+</a>
+<br />
+
+{% highlight ruby %}
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def computeCost(X, y, theta):
+
+    # Initialize J
+    J = 0
+
+    s = np.power(( X.dot(theta) - np.transpose([y]) ), 2)
+    J = (1.0/(2*y.size)) * s.sum( axis = 0 )
+
+    return J
+
+def gradientDescent(X, y, theta, alpha, num_iters):
+
+    # Keep track of J
+    J_history = np.zeros((num_iters, 1))
+
+    for i in range(num_iters):
+
+        theta = theta - alpha*(1.0/y.size) * np.transpose(X).dot(X.dot(theta) - np.transpose([y]))
+
+        # Save the cost J in every iteration    
+        J_history[i] = computeCost(X, y, theta)
+
+    return theta, J_history
+
+# dataset
+dataset = [[1, 1], [2, 3], [3, 2], [4, 3], [5, 5]]
+
+# x and y arrays
+x = np.array([row[0] for row in dataset])
+y = np.array([row[1] for row in dataset])
+
+# Add the bias
+X = np.append(arr = np.ones((y.size, 1)).astype(int), values = np.vstack(x), axis = 1)
+
+# Iterations and learning rate
+N = 5
+alpha = .1
+
+# Init Theta
+theta = np.zeros((X.shape[1], 1))
+
+theta, J_history = gradientDescent(X, y, theta, alpha, N)
+
+# Plot the convergence graph
+plt.plot(range(J_history.size), J_history, "-b", linewidth=2 )
+plt.title('Convergence')
+plt.xlabel('Number of iterations')
+plt.ylabel('Cost J')
+plt.show()
+
+{% endhighlight %}
