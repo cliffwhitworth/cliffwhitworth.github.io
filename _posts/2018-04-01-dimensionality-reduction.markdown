@@ -5,6 +5,37 @@ date:   2018-04-01 05
 categories: More
 ---
 <br />
+<h4>Kernel PCA</h4>
+
+<a href="http://scikit-learn.org/stable/auto_examples/decomposition/plot_kernel_pca.html">
+Sklearn
+</a>
+<br />
+<a href="https://www.kaggle.com/lambdaofgod/kernel-pca-examples">
+Kaggle Examples
+</a>
+
+{% highlight ruby %}
+
+  # Split the dataset
+  # Feature scaling
+
+  # Apply Kernel
+  from sklearn.decomposition import KernelPCA
+  # kpca = KernelPCA(kernel="rbf", fit_inverse_transform=True, gamma=10)
+  # X_kpca = kpca.fit_transform(X)
+  # X_back = kpca.inverse_transform(X_kpca)
+  # pca = PCA()
+  # X_pca = pca.fit_transform(X)
+  kpca = KernelPCA(n_components = 2, kernel = 'rbf')
+  X_train = kpca.fit_transform(X_train)
+  X_test = kpca.transform(X_test)
+
+  # Fit Logistic Regression to the Training set
+
+{% endhighlight %}
+
+<br />
 <h4>Linear Discriminant Analysis</h4>
 
 <a href="http://scikit-learn.org/stable/modules/lda_qda.html">
@@ -16,7 +47,7 @@ Linear Discriminant Analysis
 </a>
 <br />
 <a href="https://elitedatascience.com/dimensionality-reduction-algorithms">
-Unsupervised Feature Extraction
+Supervised Feature Extraction
 </a>
 
 {% highlight ruby %}
@@ -30,6 +61,8 @@ Unsupervised Feature Extraction
   # X_r2 = lda.fit(X, y).transform(X)
   X_train = lda.fit_transform(X_train, y_train)
   X_test = lda.transform(X_test)
+
+  # Fit Logistic Regression to the Training set
 
 {% endhighlight %}
 
@@ -64,5 +97,7 @@ Unsupervised Feature Extraction
   # Percentage of variance explained for each components
   print('explained variance ratio (first two components): %s'
         % str(pca.explained_variance_ratio_))
+
+  # Fit Logistic Regression to the Training set
 
 {% endhighlight %}

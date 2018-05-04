@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Support Vector Regression"
-date:   2018-04-27 
+date:   2018-04-27
 categories: Regression
 ---
 <br />
@@ -16,14 +16,15 @@ Examples
 
 {% highlight ruby %}
 
-# feature scaling
+# No Split
+# Scale
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 sc_y = StandardScaler()
 X = sc_X.fit_transform(X)
 y = np.ravel(sc_y.fit_transform(y.reshape(-1, 1)))
 
-# fitting svr
+# Fit
 from sklearn.svm import SVR
 regressor = SVR(kernel = 'rbf')
 regressor.fit(X, y)

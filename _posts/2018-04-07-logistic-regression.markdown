@@ -9,7 +9,7 @@ categories: Classification
 <p>Code credit:
 <br />
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">
-Scikit-learn
+Sklearn
 </a>
 <br />
 <a href="https://www.udemy.com/machinelearning/">
@@ -18,7 +18,13 @@ https://www.udemy.com/machinelearning/
 </p>
 
 {% highlight ruby %}
+
+# Split
+# Scale
+
+# Fit
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression()
 classifier.fit(x, y)
+
 {% endhighlight %}

@@ -12,7 +12,10 @@ SVC
 
 {% highlight ruby %}
 
-# fitting svm
+# Split
+# Scale
+
+# Fit
 from sklearn.svm import SVC
 classifier = SVC(kernel = 'linear', random_state = 0)
 classifier.fit(X_train, y_train)

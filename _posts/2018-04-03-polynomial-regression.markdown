@@ -18,7 +18,13 @@ https://www.udemy.com/machinelearning/
 </p>
 
 {% highlight ruby %}
+
+# No Split
+# No Scale
+
+# Fit
 from sklearn.preprocessing import PolynomialFeatures
 polynom_reg = PolynomialFeatures(3) # degree = 3
 polynom_reg.fit_transform(x)
+
 {% endhighlight %}

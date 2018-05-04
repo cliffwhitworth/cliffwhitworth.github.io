@@ -12,6 +12,10 @@ Image of formula from <a href="https://en.wikipedia.org/wiki/Simple_linear_regre
 <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ac3b42d4d7b7d8d496bbca97266021f73cceac84" alt="linear regression formula" />
 
 {% highlight ruby %}
+
+# Split
+# No Scale
+
 dataset = [[1, 1], [2, 3], [3, 2], [4, 3], [5, 5]]
 
 x_mean = sum([row[0] for row in dataset])/float(len(dataset))

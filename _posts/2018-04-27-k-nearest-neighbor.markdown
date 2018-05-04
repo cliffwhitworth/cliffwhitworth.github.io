@@ -7,12 +7,15 @@ categories: Classification
 <br />
 <h4>K-Nearest Neighbor</h4>
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier">
-KNeighborsClassifier
+Sklearn
 </a>
 
 {% highlight ruby %}
 
-# fitting k-nn
+# Split
+# Scale
+
+# Fit
 from sklearn.neighbors import KNeighborsClassifier
 classifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
 classifier.fit(X_train, y_train)

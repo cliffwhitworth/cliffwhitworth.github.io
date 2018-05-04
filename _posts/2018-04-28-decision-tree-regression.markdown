@@ -7,12 +7,15 @@ categories: Regression
 <br />
 <h4>Support Vector Regression</h4>
 <a href="http://scikit-learn.org/stable/modules/tree.html#regression">
-Decision Tree Regression
+Sklearn
 </a>
 
 {% highlight ruby %}
 
-# fit the data
+# No Split
+# No Scale
+
+# Fit
 from sklearn.tree import DecisionTreeRegressor
 regressor = DecisionTreeRegressor(random_state = 0)
 regressor.fit(X, y)

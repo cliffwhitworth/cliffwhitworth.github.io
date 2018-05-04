@@ -18,9 +18,11 @@ https://www.udemy.com/machinelearning/
 </p>
 
 {% highlight ruby %}
-# create training and test linearregressionequations
 
-# fit data to training set
+# Split
+# No Scale
+
+# Fit
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(x_train, y_train)
