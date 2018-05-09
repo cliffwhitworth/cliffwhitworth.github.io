@@ -7,7 +7,7 @@ categories: DeepLearning
 <br />
 <h4>Artificial Neural Networks</h4>
 <a href="https://keras.io/models/sequential/">
-Keras Sequenntial Model
+Keras Sequential Model
 </a>
 <br />
 <a href="https://keras.io/layers/core/">
@@ -43,10 +43,7 @@ classifier.add(Dense(units = 4, kernel_initializer = 'uniform', activation = 're
 # Output layer
 classifier.add(Dense(units = 1, kernel_initializer = 'uniform', activation = 'sigmoid'))
 
-# Optimizer, Loss, and Metric
+# Optimization algorithm, loss function, and evaluation metric
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
-
-# Fit
-classifier.fit(X_train, y_train, batch_size = 10, epochs = 100)
 
 {% endhighlight %}
