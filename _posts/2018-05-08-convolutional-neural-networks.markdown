@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "Convolutional Neural Networks"
-date:   2018-05-07
+date:   2018-05-08
 categories: DeepLearning
 ---
 <br />
-<h4>Artificial Neural Networks</h4>
+<h4>Convolutional Neural Networks</h4>
 <a href="https://keras.io/layers/convolutional/">
 Convolutional Layers
 </a>
