@@ -25,10 +25,12 @@ https://www.udemy.com/machinelearning/
 # Fit
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
-regressor.fit(x_train, y_train)
+regressor.fit(X_train, y_train)
 
 # test set prediction results
-regressor.predict(x_test)
+yhat = regressor.predict(X_test)
+print(metrics.mean_squared_error(y_true=y_test, y_pred=yhat))
+print(r2_score(y_test, yhat))
 
 {% endhighlight %}
 
