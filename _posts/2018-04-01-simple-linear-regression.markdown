@@ -61,10 +61,19 @@ y_values = [row[1] for row in dataset]
 
 x = np.array(x_values)
 y = np.array(y_values)
+# x = np.asarray([43, 21, 25, 42, 57, 59])
+# y = np.asarray([99, 65, 79, 75, 87, 81])
 
-denominator = x.dot(x) - x.mean() * x.sum()
-a = ( x.dot(y) - y.mean() * x.sum() ) / denominator
-b = ( y.mean() * x.dot(x) - x.mean() * x.dot(y) ) / denominator
+denominator = y.size * sum(map(lambda x:x*x,X)) - X.sum()**2
+# sum(map(lambda x:x*x,X)) same as X.dot(X)
+a = ((y.sum() * X.dot(X)) - (X.sum() * sum(X * y))) / denominator
+b = ((y.size * sum(X * y)) - (X.sum() * y.sum())) / denominator
+
+# or
+
+d = x.dot(x) - x.mean() * x.sum()
+a = ( y.mean() * X.dot(X) - X.mean() * X.dot(y) ) / d
+b = ( X.dot(y) - y.mean() * X.sum() ) / d
 {% endhighlight %}
 
 <br />
