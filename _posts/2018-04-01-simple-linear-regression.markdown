@@ -59,9 +59,9 @@ Image of formula from <a href="http://www.statisticshowto.com/probability-and-st
 x_values = [row[0] for row in dataset]
 y_values = [row[1] for row in dataset]
 
-x = np.array(x_values)
+X = np.array(x_values)
 y = np.array(y_values)
-# x = np.asarray([43, 21, 25, 42, 57, 59])
+# X = np.asarray([43, 21, 25, 42, 57, 59])
 # y = np.asarray([99, 65, 79, 75, 87, 81])
 
 denominator = y.size * sum(map(lambda x:x*x,X)) - X.sum()**2
@@ -71,7 +71,7 @@ b = ((y.size * sum(X * y)) - (X.sum() * y.sum())) / denominator
 
 # or
 
-d = x.dot(x) - x.mean() * x.sum()
+d = X.dot(X) - X.mean() * X.sum()
 a = ( y.mean() * X.dot(X) - X.mean() * X.dot(y) ) / d
 b = ( X.dot(y) - y.mean() * X.sum() ) / d
 {% endhighlight %}
