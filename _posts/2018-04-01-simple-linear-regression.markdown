@@ -68,12 +68,15 @@ denominator = y.size * sum(map(lambda x:x*x,X)) - X.sum()**2
 # sum(map(lambda x:x*x,X)) same as X.dot(X)
 a = ((y.sum() * X.dot(X)) - (X.sum() * sum(X * y))) / denominator
 b = ((y.size * sum(X * y)) - (X.sum() * y.sum())) / denominator
+print ('y = {:0.4f} + {:0.4f}x'.format(a, b))
 
 # or
 
 d = X.dot(X) - X.mean() * X.sum()
-a = ( y.mean() * X.dot(X) - X.mean() * X.dot(y) ) / d
-b = ( X.dot(y) - y.mean() * X.sum() ) / d
+a1 = ( y.mean() * X.dot(X) - X.mean() * X.dot(y) ) / d
+b1 = ( X.dot(y) - y.mean() * X.sum() ) / d
+print ('y = {:0.4f} + {:0.4f}x'.format(a1, b1))
+
 {% endhighlight %}
 
 <br />
