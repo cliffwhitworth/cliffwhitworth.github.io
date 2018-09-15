@@ -12,6 +12,7 @@ My Notes
 </p>
 <h3>Selected Posts</h3>
 <ul>
+    <li><a href="{{ site.baseurl}}/regression/2018/09/15/make_regression_simple_linear_regression.html">Make Regression Simple Linear Regression</a></li>
     <li><a href="{{ site.baseurl}}/more/2018/03/29/boston-housing-dataset.html">Boston Housing Dataset</a></li>
     <li><a href="{{ site.baseurl}}/regression/2018/04/01/simple-linear-regression.html">Simple Linear Regression</a></li>
     <li><a href="{{ site.baseurl}}/regression/2018/04/02/multiple-linear-regression.html">Multiple Linear Regression</a></li>
