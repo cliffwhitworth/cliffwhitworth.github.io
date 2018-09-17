@@ -19,6 +19,8 @@ https://www.udemy.com/machinelearning/
 
 {% highlight ruby %}
 
+from sklearn.metrics import mean_squared_error, r2_score
+
 # Split
 # No Scale
 
@@ -29,7 +31,7 @@ regressor.fit(X_train, y_train)
 
 # test set prediction results
 yhat = regressor.predict(X_test)
-print(metrics.mean_squared_error(y_true=y_test, y_pred=yhat))
+print(mean_squared_error(y_true=y_test, y_pred=yhat))
 print(r2_score(y_test, yhat))
 
 {% endhighlight %}
@@ -48,6 +50,9 @@ http://www.statsmodels.org/dev/endog_exog.html
 </p>
 
 {% highlight ruby %}
+
+import numpy as np
+import statsmodels.api as sm
 
 # add the bias
 np.append(arr = np.ones((len(x), 1)).astype(int), values = x, axis = 1)
