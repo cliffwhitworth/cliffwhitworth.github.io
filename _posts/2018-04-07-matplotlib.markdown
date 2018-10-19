@@ -12,12 +12,46 @@ https://matplotlib.org/
 <h4>Scatterplot with Line of Best Fit</h4>
 
 {% highlight ruby %}
+import matplotlib.pyplot as plt
+
+# use inline to show graph as output
+# %matplotlib inline
+
+# use plt.show to show graph similar to print()
+# plt.show()
 
 plt.scatter(x, y)
 plt.plot(x, yhat)
 # plt.axis([0, 6, 0, 6])
 plt.grid(True)
 plt.show()
+
+{% endhighlight %}
+
+<br />
+<h4>OO</h4>
+
+{% highlight ruby %}
+import matplotlib.pyplot as plt
+
+# Offers more control
+# Creates blank canvas
+fig = plt.figure()
+
+ax1 = fig.add_axes([0, 0, 1, 1]) # larger axes
+ax2 = fig.add_axes([0.2, 0.2, 0.5, 0.5]) # smaller axes
+
+# Larger Figure Ax 1
+ax1.plot(x, y, 'b')
+ax1.set_xlabel('X_label_ax1')
+ax1.set_ylabel('Y_label_ax2')
+ax1.set_title('Ax 1 Title')
+
+# Smaller Figure Ax 2
+ax2.plot(y, x, 'r')
+ax2.set_xlabel('X_label_ax2')
+ax2.set_ylabel('Y_label_ax2')
+ax2.set_title('Ax 2 Title');
 
 {% endhighlight %}
 
