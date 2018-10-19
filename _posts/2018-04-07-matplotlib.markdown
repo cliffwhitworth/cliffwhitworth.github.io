@@ -20,10 +20,40 @@ import matplotlib.pyplot as plt
 # use plt.show to show graph similar to print()
 # plt.show()
 
-plt.scatter(x, y)
-plt.plot(x, yhat)
+# possible marker symbols: marker = '+', 'o', '*', 's', ',', '.', '1', '2', '3', '4', ...
+# lw = linewidth, ls = linestyle
+# plt.plot(x, y, color="blue", lw=3, ls='-', marker='+')
+
+plt.scatter(x, y, label='scatter')
+plt.plot(x, yhat, label='plot')
 # plt.axis([0, 6, 0, 6])
 plt.grid(True)
+plt.legend()
+plt.show()
+
+{% endhighlight %}
+
+<br />
+<h4>Pandas Visualization</h4>
+
+{% highlight ruby %}
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+random_x = np.random.randint(1,101,100)
+random_y = np.random.randint(1,101,100)
+
+# df = pd.DataFrame()
+# df['A'] = random_x
+# df['B'] = random_y
+
+df = pd.DataFrame({'A': random_x, 'B': random_y})
+
+# print(plt.style.available)
+# https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html
+plt.style.use('seaborn-whitegrid')
+df.plot.scatter(x='A',y='B')
 plt.show()
 
 {% endhighlight %}
@@ -79,6 +109,7 @@ Subplots
 
 plt.figure(1)
 
+# plt.subplot(nrows=1, ncols=3, nplt=1)
 plt.subplot(131)
 plt.plot(features[:, 0], Y, 'bo')
 plt.title('R&D')
