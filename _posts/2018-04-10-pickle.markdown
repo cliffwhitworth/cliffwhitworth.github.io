@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Pickle"
+date:   2018-04-10 07
+categories: More
+---
+<br />
+
+<h4>Dump</h4>
+
+{% highlight ruby %}
+
+# Pickle dataset
+with open('./filename.pkl', 'wb') as filename_pkl:
+    pickle.dump(data, filename_pkl, protocol=2)
+
+{% endhighlight %}
+
+<h4>Load</h4>
+
+{% highlight ruby %}
+
+# unpickle temps created with ghcnm.ipynb
+with open('./filename.pkl', 'rb') as filename_pkl:
+    data = pickle.load(filename_pkl)
+
+{% endhighlight %}
