@@ -5,7 +5,7 @@ date:   2018-05-14 01
 categories: Regression
 ---
 <br />
-<h4>Lasso Regression</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html">
 Sklearn
 </a>

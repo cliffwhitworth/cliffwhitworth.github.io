@@ -5,7 +5,7 @@ date:   2018-05-09
 categories: DeepLearning
 ---
 <br />
-<h4>Recurrent Neural Networks</h4>
+
 <a href="https://keras.io/layers/recurrent/">
 Recurrent Layers
 </a>

@@ -5,7 +5,7 @@ date:   2018-05-03
 categories: Regression
 ---
 <br />
-<h4>Random Forest Regression</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html">
 Sklearn
 </a>

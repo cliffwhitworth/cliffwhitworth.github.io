@@ -5,7 +5,7 @@ date:   2018-04-02
 categories: Regression
 ---
 <br />
-<h4>Scikit-learn LinearRegression</h4>
+<h4>Scikit-learn Linear Regression</h4>
 <p>Code credit:
 <br />
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">

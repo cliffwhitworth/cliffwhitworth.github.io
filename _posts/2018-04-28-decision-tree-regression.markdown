@@ -5,7 +5,7 @@ date:   2018-04-28
 categories: Regression
 ---
 <br />
-<h4>Support Vector Regression</h4>
+
 <a href="http://scikit-learn.org/stable/modules/tree.html#regression">
 Sklearn
 </a>

@@ -5,7 +5,7 @@ date:   2018-04-28 05
 categories: Classification
 ---
 <br />
-<h4>Random Forest Classification</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier">
 Sklearn
 </a>

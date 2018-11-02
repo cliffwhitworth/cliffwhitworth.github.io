@@ -5,7 +5,6 @@ date:   2018-04-01
 categories: More
 ---
 <br />
-<h4>Cost Function</h4>
 
 <a href="http://ozzieliu.com/2016/02/09/gradient-descent-tutorial/">
 Ozzie Liu's Example

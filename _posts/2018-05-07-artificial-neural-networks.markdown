@@ -5,7 +5,7 @@ date:   2018-05-07
 categories: DeepLearning
 ---
 <br />
-<h4>Artificial Neural Networks</h4>
+
 <a href="https://keras.io/models/sequential/">
 Keras Sequential Model
 </a>

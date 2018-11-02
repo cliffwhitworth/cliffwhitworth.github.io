@@ -5,7 +5,6 @@ date:   2018-09-15
 categories: Regression
 ---
 <br />
-<h4>Simple Linear Regression Example</h4>
 
 <a href="https://statistics.laerd.com/spss-tutorials/multiple-regression-using-spss-statistics.php">
 Laerd
@@ -17,7 +16,7 @@ Laerd
 Scikit-learn
 </a>
 
-<a href="https://github.com/cliffwhitworth/regression-notebooks/blob/master/SimpleLinearRegression.ipynb">
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/SimpleLinearRegression.ipynb">
 Notebook
 </a>
 

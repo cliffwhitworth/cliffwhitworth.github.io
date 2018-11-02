@@ -5,7 +5,7 @@ date:   2018-04-27 01
 categories: Classification
 ---
 <br />
-<h4>K-Nearest Neighbor</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html#sklearn.neighbors.KNeighborsClassifier">
 Sklearn
 </a>

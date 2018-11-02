@@ -5,7 +5,7 @@ date:   2018-04-27 10
 categories: Classification
 ---
 <br />
-<h4>Kernel SVM</h4>
+
 <a href="http://scikit-learn.org/stable/auto_examples/svm/plot_custom_kernel.html#sphx-glr-auto-examples-svm-plot-custom-kernel-py">
 Sklearn
 </a>

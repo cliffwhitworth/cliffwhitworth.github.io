@@ -5,7 +5,7 @@ date:   2018-05-08
 categories: DeepLearning
 ---
 <br />
-<h4>Convolutional Neural Networks</h4>
+
 <a href="https://keras.io/layers/convolutional/">
 Convolutional Layers
 </a>

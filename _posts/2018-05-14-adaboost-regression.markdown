@@ -5,7 +5,7 @@ date:   2018-05-14 05
 categories: Regression
 ---
 <br />
-<h4>Adaboost Regression</h4>
+(Adaboost Regression)<br />
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostRegressor.html">
 Sklearn
 </a>

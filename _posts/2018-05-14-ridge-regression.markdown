@@ -5,7 +5,7 @@ date:   2018-05-14 19
 categories: Regression
 ---
 <br />
-<h4>Ridge Regression</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html">
 Sklearn
 </a>

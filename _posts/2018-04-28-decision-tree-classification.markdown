@@ -5,7 +5,7 @@ date:   2018-04-28
 categories: Classification
 ---
 <br />
-<h4>Decision Tree Classification</h4>
+
 <a href="http://scikit-learn.org/stable/modules/tree.html#classification">
 Decision Tree Classification
 </a>

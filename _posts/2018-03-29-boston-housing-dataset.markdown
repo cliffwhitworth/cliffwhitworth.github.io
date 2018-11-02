@@ -5,7 +5,6 @@ date:   2018-03-29
 categories: More
 ---
 <br />
-<h4>Boston Housing Dataset</h4>
 
 <a href="http://scikit-learn.org/stable/datasets/index.html">
 Dataset Loading Utilities

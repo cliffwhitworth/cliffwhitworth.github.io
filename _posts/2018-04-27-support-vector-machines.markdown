@@ -5,7 +5,7 @@ date:   2018-04-27 05
 categories: Classification
 ---
 <br />
-<h4>Support Vector Machines</h4>
+
 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC">
 SVC
 </a>
