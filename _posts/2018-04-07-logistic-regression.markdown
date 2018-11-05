@@ -71,7 +71,7 @@ Towards data science
 </li>
 <li>The S curve:
 <a href="https://www.goodreads.com/author/quotes/3242685.Pedro_Domingos?page=5">
-Bogotobogo
+Pedro Domingos
 </a>
 </li>
 </ul>
