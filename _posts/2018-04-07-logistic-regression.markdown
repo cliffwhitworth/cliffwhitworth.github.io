@@ -64,6 +64,16 @@ Statistics how to
 Bogotobogo
 </a>
 </li>
+<li>Sigmoid function:
+<a href="https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6">
+Towards data science
+</a>
+</li>
+<li>The S curve:
+<a href="https://www.goodreads.com/author/quotes/3242685.Pedro_Domingos?page=5">
+Bogotobogo
+</a>
+</li>
 </ul>
 <br />
 
