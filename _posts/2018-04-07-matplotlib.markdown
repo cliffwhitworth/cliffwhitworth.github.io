@@ -431,3 +431,63 @@ plt.ylabel('Cost J')
 plt.show()
 
 {% endhighlight %}
+<br />
+
+<h4>ROC / AUC</h4>
+
+<a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8">Towards data science</a>
+
+{% highlight ruby %}
+
+# https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8
+logit_roc_auc = roc_auc_score(ny, model.predict(nX))
+fpr, tpr, thresholds = roc_curve(ny, model.predict_proba(nX)[:,1])
+plt.figure()
+plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % logit_roc_auc)
+plt.plot([0, 1], [0, 1],'r--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Receiver operating characteristic')
+plt.legend(loc="lower right")
+plt.show()
+
+{% endhighlight %}
+<br />
+
+<h4>Logistic / Linear Regression Plot</h4>
+
+<a href="http://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic.html#sphx-glr-auto-examples-linear-model-plot-logistic-py">Logistic / linear plot</a>
+
+{% highlight ruby %}
+
+# Code source: Gael Varoquaux
+# License: BSD 3 clause
+
+# Plot the logistic and linear models
+plt.figure(figsize=(12, 4))
+plt.clf()
+plt.scatter(df['Feature'], df['Class'], color='black', s=2)
+X_line = np.linspace(-3, 3, 100)
+
+def model_func(x):
+    return 1 / (1 + np.exp(-x))
+
+loss = model_func(X_line * model.coef_ + model.intercept_).ravel()
+plt.plot(X_line, loss, color='red', linewidth=1)
+
+ols = LinearRegression()
+ols.fit(nX, df['Class'])
+plt.plot(X_line, ols.coef_ * X_line + ols.intercept_, linewidth=1)
+plt.axhline(.5, color='.5')
+
+plt.ylabel('Class')
+plt.xlabel('Feature')
+plt.xticks(range(-3, 3))
+plt.yticks([0, 0.5, 1])
+plt.legend(('Logistic Regression Model', 'Linear Regression Model'), loc="lower right")
+plt.tight_layout()
+plt.show()
+
+{% endhighlight %}
