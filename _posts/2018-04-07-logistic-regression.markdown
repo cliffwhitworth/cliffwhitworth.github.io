@@ -85,8 +85,7 @@ Pedro Domingos
 
 # Generate a random n-class classification problem
 n = 10000
-X, y = make_classification(n_samples=n, n_features=1,  
-                                             n_informative=1, n_redundant=0, n_clusters_per_class=1)
+X, y = make_classification(n_samples=n, n_features=1, n_informative=1, n_redundant=0, n_clusters_per_class=1)
 
 # Create a dataframe of the feature and class
 df = pd.DataFrame({'Feature': X.flatten(), 'Class': y.flatten()})
