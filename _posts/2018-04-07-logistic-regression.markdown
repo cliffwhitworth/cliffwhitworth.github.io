@@ -31,7 +31,9 @@ import numpy as np
 
 from sklearn.datasets import make_classification
 from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_auc_score, roc_curve
+from sklearn.metrics import log_loss
 
 import matplotlib.pyplot as plt
 
@@ -82,7 +84,7 @@ Pedro Domingos
 {% highlight ruby %}
 
 # Generate a random n-class classification problem
-n = 1000
+n = 10000
 X, y = make_classification(n_samples=n, n_features=1,  
                                              n_informative=1, n_redundant=0, n_clusters_per_class=1)
 
@@ -112,11 +114,18 @@ print(result.summary2())
 
 {% highlight ruby %}
 
-nX = df['Feature'].values.reshape(-1,1)
-ny = df['Class'].values
-model = LogisticRegression(C=1e9, solver='lbfgs')
-model.fit(nX, ny)
-predictions = model.predict(nX)
+X = df.drop('Class', axis=1)
+y = df['Class']
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+
+model = LogisticRegression()
+model.fit(X_train,y_train)
+predictions = model.predict(X_test)
+
+print('Test size')
+print(len(predictions))
+print()
 
 print('Iterations: ', model.n_iter_)
 print('Intercept: ', model.intercept_)
@@ -146,20 +155,20 @@ print(df.loc[misclassified,:])
 {% endhighlight %}
 <br />
 
-<h4>Sklearn / Statsmodels Comparison</h4>
+<h4>Log Loss</h4>
 
 {% highlight ruby %}
 
-# https://stats.stackexchange.com/questions/203740/logistic-regression-scikit-learn-vs-statsmodels
-# sklearn
-mdl = LogisticRegression(C=1e9, solver='lbfgs')
-sklearn = mdl.fit(nX, ny)
-print('Sklearn coef_: ', sklearn.coef_.flatten()[0])
-print()
+# https://stackoverflow.com/questions/48185090/how-to-get-the-log-likelihood-for-a-logistic-regression-model-in-sklearn
+# Every quantity described as "loss", implies "the lower the better"
 
-# sm
-statsmodel = sm.Logit(df['Class'], df['Feature'])
-print(statsmodel.fit().params)
+# http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html
+# -log P(yt|yp) = -(yt log(yp) + (1 - yt) log(1 - yp))
+
+print(log_loss(y_test, predictions))
+log_likelihood_elements = y_test*np.log(predictions) + (1-y_test)*np.log(1-predictions)
+print(log_likelihood_elements)
+print(-np.sum(log_likelihood_elements)/len(y_test))
 
 {% endhighlight %}
 <br />
@@ -171,8 +180,8 @@ print(statsmodel.fit().params)
 {% highlight ruby %}
 
 # https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8
-logit_roc_auc = roc_auc_score(ny, model.predict(nX))
-fpr, tpr, thresholds = roc_curve(ny, model.predict_proba(nX)[:,1])
+logit_roc_auc = roc_auc_score(y_test, predictions)
+fpr, tpr, thresholds = roc_curve(y_test, model.predict_proba(X_test)[:,1])
 plt.figure()
 plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % logit_roc_auc)
 plt.plot([0, 1], [0, 1],'r--')
@@ -193,6 +202,7 @@ plt.show()
 
 {% highlight ruby %}
 
+# http://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic.html#sphx-glr-auto-examples-linear-model-plot-logistic-py
 # Code source: Gael Varoquaux
 # License: BSD 3 clause
 
@@ -209,7 +219,7 @@ loss = model_func(X_line * model.coef_ + model.intercept_).ravel()
 plt.plot(X_line, loss, color='red', linewidth=1)
 
 ols = LinearRegression()
-ols.fit(nX, df['Class'])
+ols.fit(X_train,y_train)
 plt.plot(X_line, ols.coef_ * X_line + ols.intercept_, linewidth=1)
 plt.axhline(.5, color='.5')
 
