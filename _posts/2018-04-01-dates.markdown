@@ -6,8 +6,15 @@ categories: More
 ---
 <br />
 <h4>DateTime</h4>
+<p>Date variables should no be used as categorical data</p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/timeseries.html#time-date-components">
+DateTime Components
+</a></p>
 
 {% highlight ruby %}
 
+# To datetime
+dataframe['Date Type Column'] = pd.to_datetime(dataframe.date_column_as_string)
+dataframe['Month'] = dataframe.date_column_as_string.dt.month
 
 {% endhighlight %}

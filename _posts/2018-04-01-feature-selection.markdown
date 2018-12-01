@@ -16,13 +16,11 @@ import seaborn as sns
 import statsmodels.api as sm
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import RFE, SelectKBest, f_regression
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
-from sklearn.datasets import make_classification
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_auc_score, mean_squared_error
 
 import tensorflow as tf
 
@@ -59,51 +57,6 @@ df.columns = column_names
 # print(df.columns)
 
 df.head()
-
-{% endhighlight %}
-
-<br />
-<h4>Find Explained Variance</h4>
-
-{% highlight ruby %}
-
-# https://www.analyticsvidhya.com/blog/2016/03/practical-guide-principal-component-analysis-python/
-
-pca_full = PCA(n_components=features_for_pca)
-pca_full.fit(scaled_data)
-
-# Amount of variance for each component
-var = pca_full.explained_variance_ratio_
-
-# Cumulative sum
-cumsum = np.cumsum(np.round(pca_full.explained_variance_ratio_, decimals=4)*100)
-
-# Find the number of pca components that account for 95% (~10)
-plt.figure(figsize=(12, 4))
-
-# plt.subplot(nrows=1, ncols=3, nplt=1)
-plt.subplot(121)
-plt.plot(var, 'b-')
-plt.title('Variance')
-plt.xlabel('Components')
-plt.ylabel('% Explained Variance')
-plt.grid()
-
-plt.subplot(122)
-plt.plot(cumsum, 'r-')
-plt.title('Cumulative Sum')
-plt.xlabel('Components')
-plt.ylabel('Sum % Explained Variance')
-plt.grid()
-
-plt.show()
-
-{% endhighlight %}
-
-<br />
-<h4>Principal Component Analysis</h4>
-
-{% highlight ruby %}
 
 {% endhighlight %}
 
