@@ -10,7 +10,7 @@ categories: More
 Dataset Loading Utilities
 </a>
 
-<a href="https://github.com/cliffwhitworth/regression-notebooks/blob/master/BostonHousingDataset.ipynb">
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/BostonHousingDataset.ipynb">
 Notebook
 </a>
 

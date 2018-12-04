@@ -14,7 +14,7 @@ Scikit-learn
 Chris Albon
 </a>
 
-<a href="https://notebooks.bigbluetoe.com/notebooks/work/github/machine_learning_notebooks/LogisticRegression.ipynb">
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/LogisticRegression.ipynb">
 Notebook
 </a>
 

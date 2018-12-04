@@ -18,7 +18,7 @@ Sklearn
 Wikipedia
 </a>
 <br />
-<a href="https://github.com/cliffwhitworth/machine_learning_notebooks/blob/master/LogisticRegressionNotes.ipynb">
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/LogisticRegressionNotes.ipynb">
 Notebook
 </a>
 
