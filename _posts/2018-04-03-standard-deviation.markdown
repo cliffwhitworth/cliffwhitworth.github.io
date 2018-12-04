@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Standard Deviation"
-date:   2018-04-03
+date:   2018-04-03 02
 categories: Stats
 ---
 <br />

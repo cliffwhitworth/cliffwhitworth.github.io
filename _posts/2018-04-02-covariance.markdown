@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Covariance"
-date:   2018-04-02
+date:   2018-04-02 02
 categories: Stats
 ---
 <br />
