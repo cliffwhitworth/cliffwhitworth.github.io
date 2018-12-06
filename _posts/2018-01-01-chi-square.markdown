@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Chi Squared"
+title:  "Chi Square"
 date:   2018-04-01 03
 categories: Stats
 ---
