@@ -491,3 +491,49 @@ plt.tight_layout()
 plt.show()
 
 {% endhighlight %}
+<br />
+
+<h4>Candlesticks</h4>
+
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/Charts.ipynb">
+Notebook</a>
+
+{% highlight ruby %}
+
+# deprecated from matplotlib.mpl_finance import candlestick_ohlc
+from mpl_finance import candlestick_ohlc
+from matplotlib.dates import DateFormatter, date2num, WeekdayLocator, DayLocator, MONDAY
+
+fig = plt.figure(figsize=(16,12))
+
+ax1 = plt.subplot2grid((3, 2), (0, 0))
+ax2 = plt.subplot2grid((3, 2), (0, 1))
+ax3 = plt.subplot2grid((3, 2), (1, 0))
+ax4 = plt.subplot2grid((3, 2), (1, 1))
+ax5 = plt.subplot2grid((3, 2), (2, 0))
+
+plots = [(ax1, googl, 'GOOGL'),(ax2, goog, 'GOOG'),(ax3, msft, 'MSFT'),(ax4, aapl, 'AAPL'),(ax5, amzn, 'AMZN')]
+
+for ax, symbol, title in plots:
+    # Get days in month
+    df_reset = symbol.loc['2018-11':'2018-11'].reset_index()
+
+    # Create a new column of numerical "date" values for matplotlib to use
+    df_reset['date_ax'] = df_reset['date'].apply(lambda date: date2num(date))
+    df_values = [tuple(vals) for vals in df_reset[['date_ax', 'open', 'high', 'low', 'close']].values]
+
+    mondays = WeekdayLocator(MONDAY)        # major ticks on the mondays
+    alldays = DayLocator()                  # minor ticks on the days
+    weekFormatter = DateFormatter('%b %d')  # e.g., Jan 12
+    dayFormatter = DateFormatter('%d')      # e.g., 12
+
+    #Plot it
+    ax.xaxis.set_major_locator(mondays)
+    ax.xaxis.set_minor_locator(alldays)
+    ax.xaxis.set_major_formatter(weekFormatter)
+
+    ax.set_title(title)
+
+    candlestick_ohlc(ax, df_values, width=0.6, colorup='g',colordown='r');
+
+{% endhighlight %}
