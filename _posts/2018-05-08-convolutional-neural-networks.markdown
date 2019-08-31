@@ -98,6 +98,8 @@ r = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=15)
 
 import tensorflow as tf
 
+# using CIFAR
+
 i = Input(shape=x_train[0].shape)
 # x = Conv2D(32, (3, 3), strides=2, activation='relu')(i)
 # x = Conv2D(64, (3, 3), strides=2, activation='relu')(x)
