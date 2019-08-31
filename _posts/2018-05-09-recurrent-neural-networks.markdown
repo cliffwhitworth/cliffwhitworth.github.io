@@ -109,3 +109,26 @@ while len(validation_predictions) < len(validation_target):
   last_x[-1] = p
 
 {% endhighlight %}
+
+{% highlight ruby %}
+
+import tensorflow as tf
+
+# autoregressive RNN model
+i = Input(shape=(T, 1))
+x = SimpleRNN(5, activation='relu')(i)
+x = Dense(1)(x)
+model = Model(i, x)
+model.compile(
+  loss='mse',
+  optimizer=Adam(lr=0.1),
+)
+
+# train the RNN
+r = model.fit(
+  X[:-N//2], Y[:-N//2],
+  epochs=80,
+  validation_data=(X[-N//2:], Y[-N//2:]),
+)
+
+{% endhighlight %}

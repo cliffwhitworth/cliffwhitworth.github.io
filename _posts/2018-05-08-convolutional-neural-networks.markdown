@@ -67,3 +67,74 @@ classifier.add(Dense(number_of_classes, activation='softmax'))
 classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 {% endhighlight %}
+
+{% highlight ruby %}
+
+import tensorflow as tf
+
+# using MNIST
+
+i = Input(shape=x_train[0].shape)
+x = Conv2D(32, (3, 3), strides=2, activation='relu')(i)
+x = Conv2D(64, (3, 3), strides=2, activation='relu')(x)
+x = Conv2D(128, (3, 3), strides=2, activation='relu')(x)
+x = Flatten()(x)
+x = Dropout(0.2)(x)
+x = Dense(512, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(K, activation='softmax')(x)
+
+model = Model(i, x)
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+r = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=15)
+
+{% endhighlight %}
+
+{% highlight ruby %}
+
+import tensorflow as tf
+
+i = Input(shape=x_train[0].shape)
+# x = Conv2D(32, (3, 3), strides=2, activation='relu')(i)
+# x = Conv2D(64, (3, 3), strides=2, activation='relu')(x)
+# x = Conv2D(128, (3, 3), strides=2, activation='relu')(x)
+
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(i)
+x = BatchNormalization()(x)
+x = Conv2D(32, (3, 3), activation='relu', padding='same')(x)
+x = BatchNormalization()(x)
+x = MaxPooling2D((2, 2))(x)
+# x = Dropout(0.2)(x)
+x = Conv2D(64, (3, 3), activation='relu', padding='same')(x)
+x = BatchNormalization()(x)
+x = Conv2D(64, (3, 3), activation='relu', padding='same')(x)
+x = BatchNormalization()(x)
+x = MaxPooling2D((2, 2))(x)
+# x = Dropout(0.2)(x)
+x = Conv2D(128, (3, 3), activation='relu', padding='same')(x)
+x = BatchNormalization()(x)
+x = Conv2D(128, (3, 3), activation='relu', padding='same')(x)
+x = BatchNormalization()(x)
+x = MaxPooling2D((2, 2))(x)
+# x = Dropout(0.2)(x)
+
+# x = GlobalMaxPooling2D()(x)
+x = Flatten()(x)
+x = Dropout(0.2)(x)
+x = Dense(1024, activation='relu')(x)
+x = Dropout(0.2)(x)
+x = Dense(K, activation='softmax')(x)
+
+model = Model(i, x)
+
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+r = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=50)
+
+{% endhighlight %}
