@@ -44,27 +44,27 @@ from keras.layers import Flatten
 from keras.layers import Dense
 
 # Initialize
-classifier = Sequential()
+model = Sequential()
 
 # First convolutional layer
-classifier.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
+model.add(Conv2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
 
 # Pooling or downsampling
 model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2)))
 
 # Second convolutional layer and pooling
-classifier.add(Conv2D(32, (3, 3), activation = 'relu'))
-classifier.add(MaxPooling2D(pool_size = (2, 2)))
+model.add(Conv2D(32, (3, 3), activation = 'relu'))
+model.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Flatten for the fully connected layers
-classifier.add(Flatten())
+model.add(Flatten())
 
 # Fully connected layers (neural nets)
-classifier.add(Dense(number_of_units, activation='relu'))
-classifier.add(Dense(number_of_classes, activation='softmax'))
+model.add(Dense(number_of_units, activation='relu'))
+model.add(Dense(number_of_classes, activation='softmax'))
 
 # Optimization algorithm, loss function, and evaluation metric
-classifier.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 {% endhighlight %}
 
@@ -74,7 +74,7 @@ import tensorflow as tf
 
 # using MNIST
 
-i = Input(shape=x_train[0].shape)
+i = Input(shape=X_train[0].shape)
 x = Conv2D(32, (3, 3), strides=2, activation='relu')(i)
 x = Conv2D(64, (3, 3), strides=2, activation='relu')(x)
 x = Conv2D(128, (3, 3), strides=2, activation='relu')(x)
@@ -90,7 +90,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-r = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=15)
+r = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=100)
 
 {% endhighlight %}
 

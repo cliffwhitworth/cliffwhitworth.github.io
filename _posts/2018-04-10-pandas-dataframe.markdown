@@ -14,9 +14,11 @@ Documentation
 
 {% highlight ruby %}
 # Create a dataframe of the features and add the target
+import pandas as pd
+
 df = pd.DataFrame(Features)
 df.columns = [Feature_Names]
-df['Target'] = target
+df['Target'] = Target
 print('Dataframe Head')
 print(df.head())
 {% endhighlight %}
