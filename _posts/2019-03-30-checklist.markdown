@@ -435,6 +435,8 @@ model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=100)
 {% endhighlight %}
 </li>
 </ul>
+<li>Cross Validation</li>
+<li>Grid Search</li>
 <li>Metrics - https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics</li>
 <li>Regression Metrics</li>
 <ul>
