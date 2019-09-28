@@ -160,9 +160,9 @@ lin_reg.predict(model.fit_transform(X_test))
 {% highlight ruby %}
 # Support Vector Regression
 # https://scikit-learn.org/stable/modules/svm.html#regression
-from sklearn import svm
+from sklearn.svm import SVR
 
-model = svm.SVR()
+model = SVR()
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 {% endhighlight %}
@@ -185,7 +185,7 @@ predictions = model.predict(X_test)
 from sklearn.ensemble import RandomForestRegressor
 
 model = RandomForestRegressor(n_estimators = 50)
-regressor.fit(X_train, y_train)
+model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 {% endhighlight %}
 </li>
