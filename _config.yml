@@ -1,7 +1,7 @@
 # Jekyll configuration
 
-name: Cliff Whitworth
-description: My Notes
+name: Cliff's
+description: Notes
 
 # url is currently only used only for the RSS feed in feed.xml
 url: https://cliffwhitworth.github.io
@@ -10,7 +10,7 @@ url: https://cliffwhitworth.github.io
 # be the project name.
 # *** IMPORTANT: If your local "jekyll serve" throws errors change this to '' or
 #     run it like so: jekyll serve --baseurl=''
-baseurl: /
+baseurl: ''
 
 # These can be '' to hide the Github or Gitlab nav buttons
 github: 'cliffwhitworth'
