@@ -1,8 +1,0 @@
-I"E<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isin.html">Documentation</a></p>
-
-<p>A way to see if a string is in any of your features</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>df.isin([' ?']).any(axis='rows')
-</code></pre></div></div>
-
-:ET
