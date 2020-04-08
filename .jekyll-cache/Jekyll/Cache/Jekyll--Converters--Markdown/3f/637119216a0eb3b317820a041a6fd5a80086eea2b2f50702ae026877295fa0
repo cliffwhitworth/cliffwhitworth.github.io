@@ -1,0 +1,15 @@
+I"Ž<p><br /></p>
+
+<h4>Dump</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Pickle dataset</span>
+<span class="n">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./filename.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="n">as</span> <span class="ss">filename_pkl:
+    </span><span class="n">pickle</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">filename_pkl</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></code></pre></figure>
+
+<h4>Load</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># unpickle temps created with ghcnm.ipynb</span>
+<span class="n">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./filename.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="n">as</span> <span class="ss">filename_pkl:
+    </span><span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">filename_pkl</span><span class="p">)</span></code></pre></figure>
+
+:ET

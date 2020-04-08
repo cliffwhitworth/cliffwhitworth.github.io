@@ -1,0 +1,11 @@
+I"
+<p><br /></p>
+<h4>F Score</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">scipy</span> <span class="n">import</span> <span class="n">stats</span>
+<span class="n">stats</span><span class="p">.</span><span class="nf">f</span><span class="p">.</span><span class="nf">ppf</span><span class="p">(</span><span class="mi">1</span><span class="o">-.</span><span class="mo">05</span><span class="p">,</span><span class="n">dfn</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">dfd</span><span class="o">=</span><span class="mi">27</span><span class="p">)</span>
+
+<span class="c1"># Excel</span>
+<span class="c1"># FINV(alpha,df1,df2)</span></code></pre></figure>
+
+:ET

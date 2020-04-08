@@ -1,0 +1,118 @@
+I""/<p><br /></p>
+
+<p><a href="https://keras.io/layers/recurrent/">
+Recurrent Layers
+</a>
+<br />
+<a href="https://keras.io/layers/core/">
+Dense and Dropout
+</a>
+<br />
+<a href="https://keras.io/layers/recurrent/#lstm">
+LSTM
+</a>
+<br />
+<a href="https://github.com/sagar448/Keras-Recurrent-Neural-Network-Python">
+RNN Example
+</a>
+<br />
+<a href="https://machinelearningmastery.com/stacked-long-short-term-memory-networks/">
+Stacked Long Short Term Memory Networks
+</a>
+<br />
+<a href="http://adventuresinmachinelearning.com/recurrent-neural-networks-lstm-tutorial-tensorflow/">
+Tutorial for TensorFlow
+</a>
+<br />
+<a href="http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function/">
+Sigmoid vs Softmax
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Importing libraries</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">models</span> <span class="n">import</span> <span class="no">Sequential</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Dense</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">LSTM</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Dropout</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">model</span> <span class="o">=</span> <span class="no">Sequential</span><span class="p">()</span>
+
+<span class="c1"># Adding LSTM layer and some Dropout regularisation</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">LSTM</span><span class="p">(</span><span class="n">units</span> <span class="o">=</span> <span class="n">number_of_units</span><span class="p">,</span> <span class="n">return_sequences</span> <span class="o">=</span> <span class="no">True</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="no">X</span><span class="p">.</span><span class="nf">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="no">X</span><span class="p">.</span><span class="nf">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])))</span>
+
+<span class="c1"># Add dropout regularization</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+
+<span class="c1"># Add more LSTM layers and dropout regularization</span>
+
+<span class="c1"># Add output layer</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Dense</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="nf">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+
+<span class="c1"># Optimization algorithm and loss function</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="s1">'adam'</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">'mean_squared_error'</span><span class="p">)</span>
+
+<span class="c1"># Fit</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># autoregressive model</span>
+
+<span class="n">from</span> <span class="n">tensorflow</span><span class="p">.</span><span class="nf">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Input</span><span class="p">,</span> <span class="no">Dense</span>
+<span class="n">from</span> <span class="n">tensorflow</span><span class="p">.</span><span class="nf">keras</span><span class="p">.</span><span class="nf">models</span> <span class="n">import</span> <span class="no">Model</span>
+<span class="n">from</span> <span class="n">tensorflow</span><span class="p">.</span><span class="nf">keras</span><span class="p">.</span><span class="nf">optimizers</span> <span class="n">import</span> <span class="no">SGD</span><span class="p">,</span> <span class="no">Adam</span>
+
+<span class="no">N</span> <span class="o">=</span> <span class="n">len</span><span class="p">(</span><span class="no">X</span><span class="p">)</span>
+
+<span class="c1"># build the model</span>
+<span class="n">i</span> <span class="o">=</span> <span class="no">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="no">T</span><span class="p">,))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="no">Model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+  <span class="n">loss</span><span class="o">=</span><span class="s1">'mse'</span><span class="p">,</span>
+  <span class="n">optimizer</span><span class="o">=</span><span class="no">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># train the model</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+  <span class="no">X</span><span class="p">[:</span><span class="o">-</span><span class="no">N</span><span class="o">/</span><span class="sr">/2], Y[:-N/</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+  <span class="n">epochs</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+  <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="no">X</span><span class="p">[</span><span class="o">-</span><span class="no">N</span><span class="o">/</span><span class="sr">/2:], Y[-N/</span><span class="o">/</span><span class="mi">2</span><span class="p">:]),</span>
+<span class="p">)</span>
+
+<span class="c1"># Forecast future values (use only self-predictions for making future predictions)</span>
+
+<span class="n">validation_target</span> <span class="o">=</span> <span class="no">Y</span><span class="p">[</span><span class="o">-</span><span class="no">N</span><span class="o">/</span><span class="sr">/2:]
+validation_predictions = []
+
+# last train input
+last_x = X[-N/</span><span class="o">/</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 1-D array of length T</span>
+
+<span class="k">while</span> <span class="n">len</span><span class="p">(</span><span class="n">validation_predictions</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">(</span><span class="n">validation_target</span><span class="p">):</span>
+  <span class="nb">p</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">last_x</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 1x1 array -&gt; scalar</span>
+  
+  <span class="c1"># update the predictions list</span>
+  <span class="n">validation_predictions</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nb">p</span><span class="p">)</span>
+  
+  <span class="c1"># make the new input</span>
+  <span class="n">last_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">roll</span><span class="p">(</span><span class="n">last_x</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">last_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">p</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">tensorflow</span> <span class="n">as</span> <span class="n">tf</span>
+
+<span class="c1"># autoregressive RNN model</span>
+<span class="n">i</span> <span class="o">=</span> <span class="no">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="no">T</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">SimpleRNN</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="no">Model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+  <span class="n">loss</span><span class="o">=</span><span class="s1">'mse'</span><span class="p">,</span>
+  <span class="n">optimizer</span><span class="o">=</span><span class="no">Adam</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># train the RNN</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+  <span class="no">X</span><span class="p">[:</span><span class="o">-</span><span class="no">N</span><span class="o">/</span><span class="sr">/2], Y[:-N/</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+  <span class="n">epochs</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+  <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="no">X</span><span class="p">[</span><span class="o">-</span><span class="no">N</span><span class="o">/</span><span class="sr">/2:], Y[-N/</span><span class="o">/</span><span class="mi">2</span><span class="p">:]),</span>
+<span class="p">)</span></code></pre></figure>
+
+:ET

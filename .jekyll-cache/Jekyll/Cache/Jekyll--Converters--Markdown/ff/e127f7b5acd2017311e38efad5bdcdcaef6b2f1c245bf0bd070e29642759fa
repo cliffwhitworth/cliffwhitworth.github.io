@@ -1,0 +1,16 @@
+I"<p><br /></p>
+<h4>Sample Covariance</h4>
+
+<p><a href="https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance">
+Wikipedia
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">x_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">]</span>
+<span class="n">y_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">]</span>
+
+<span class="no">Join</span> <span class="n">a</span> <span class="n">sequence</span> <span class="n">of</span> <span class="n">arrays</span> <span class="n">along</span> <span class="n">a</span> <span class="n">new</span> <span class="n">axis</span><span class="p">.</span>
+<span class="nf">xy_stacked</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">stack</span><span class="p">((</span><span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Covariance: '</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">cov</span><span class="p">(</span><span class="n">xy_stacked</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span></code></pre></figure>
+
+:ET

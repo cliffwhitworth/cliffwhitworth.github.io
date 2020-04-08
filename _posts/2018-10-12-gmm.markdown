@@ -1,0 +1,26 @@
+---
+layout: post
+title:  "GMM Using EM Algorithm"
+date:   2018-10-12 13
+categories: Clustering
+---
+<br />
+<h4>Gaussian Mixture Model Using Expectation-Maximization Optimizer Algorithm</h4>
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.mixture.GaussianMixture.html">
+Sklearn
+</a>
+<br />
+<a href="http://scikit-learn.org/stable/modules/clustering.html">
+Overview of Clustering
+</a>
+<br />
+<a href="https://towardsdatascience.com/the-5-clustering-algorithms-data-scientists-need-to-know-a36d136ef68">
+5 Clustering Algorithms Data Scientists Need to Know
+</a>
+
+
+{% highlight ruby %}
+
+
+
+{% endhighlight %}

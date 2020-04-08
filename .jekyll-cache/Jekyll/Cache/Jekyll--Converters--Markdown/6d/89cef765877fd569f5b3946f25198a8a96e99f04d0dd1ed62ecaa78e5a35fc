@@ -1,0 +1,16 @@
+I"“<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html">
+Sklearn
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># No Split</span>
+<span class="c1"># No Scale</span>
+
+<span class="c1"># Fit</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">ensemble</span> <span class="n">import</span> <span class="no">RandomForestRegressor</span>
+<span class="c1"># regr = RandomForestRegressor(max_depth=2, random_state=0)</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="no">RandomForestRegressor</span><span class="p">(</span><span class="n">n_estimators</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">regressor</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></figure>
+
+:ET

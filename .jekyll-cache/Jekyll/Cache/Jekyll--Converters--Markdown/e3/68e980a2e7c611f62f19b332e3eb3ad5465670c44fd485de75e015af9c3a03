@@ -1,0 +1,27 @@
+I"U<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/tree.html#classification">
+Decision Tree Classification
+</a>
+<br /></p>
+<h4>Entropy</h4>
+<p><a href="https://bricaud.github.io/personal-blog/entropy-in-decision-trees/">
+Entropy
+</a>
+<br />
+<a href="https://nullpointerexception1.wordpress.com/2017/12/13/entropy-in-machine-learning/">
+Entropy
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Split</span>
+<span class="c1"># Scale</span>
+
+<span class="c1"># Fit</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">tree</span> <span class="n">import</span> <span class="no">DecisionTreeClassifier</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="no">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span> <span class="o">=</span> <span class="s1">'entropy'</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">classifier</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># how are the predictions looking on the test set</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span></code></pre></figure>
+
+:ET

@@ -1,0 +1,54 @@
+I"ñ<p><br /></p>
+
+<p><a href="http://ozzieliu.com/2016/02/09/gradient-descent-tutorial/">
+Ozzie Liuâ€™s Example
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+
+    <span class="c1"># 1/2m * sum of (predictions - y)^2</span>
+    <span class="no">J</span> <span class="o">=</span> <span class="p">((</span><span class="no">X</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="no">T</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">.</span><span class="nf">size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="no">J</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Cost Function Example</h4>
+
+<p><a href="https://scipython.com/blog/visualizing-the-gradient-descent-method/">
+Code that got this started
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+<span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+<span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="nf">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+<span class="n">import</span> <span class="n">pylab</span> <span class="n">as</span> <span class="n">plb</span>
+
+<span class="k">def</span> <span class="nf">cost_function</span><span class="p">(</span><span class="n">theta</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">average</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">theta</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="c1"># dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+
+<span class="c1"># x and y arrays</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">])</span>
+
+<span class="c1"># Take N steps with learning rate alpha</span>
+<span class="c1"># down the steepest gradient, starting at theta = 0 with m size.</span>
+<span class="no">N</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">theta</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="no">J</span> <span class="o">=</span> <span class="p">[</span><span class="n">cost_function</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]]</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="no">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">last_theta</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">this_theta</span> <span class="o">=</span> <span class="n">last_theta</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(((</span><span class="n">x</span><span class="o">*</span><span class="n">last_theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">theta</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">this_theta</span><span class="p">)</span>
+    <span class="no">J</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">cost_function</span><span class="p">(</span><span class="n">this_theta</span><span class="p">))</span>
+
+<span class="c1"># print cost and theta</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Initial cost: '</span><span class="p">,</span> <span class="no">J</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Theta: '</span><span class="p">,</span> <span class="n">theta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span></code></pre></figure>
+
+:ET

@@ -1,0 +1,11 @@
+I"è<p><br /></p>
+<h4>Critical Value</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">scipy</span><span class="p">.</span><span class="nf">stats</span> <span class="n">import</span> <span class="n">chi2</span>
+<span class="n">chi2</span><span class="p">.</span><span class="nf">isf</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Excel</span>
+<span class="c1"># 95% confidence and 5 degrees of freedom</span>
+<span class="c1"># CHISQ.INV.RT(0.05,5)</span></code></pre></figure>
+
+:ET

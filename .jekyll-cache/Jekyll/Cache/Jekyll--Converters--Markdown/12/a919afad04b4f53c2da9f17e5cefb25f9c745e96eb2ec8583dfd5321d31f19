@@ -1,0 +1,25 @@
+I"ê	<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.ElasticNet.html">
+Sklearn
+</a>
+<br />
+<a href="https://www.analyticsvidhya.com/blog/2017/06/a-comprehensive-guide-for-linear-ridge-and-lasso-regression/">
+A Comprehensive Beginner‚Äôs Guide
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Import</span>
+<span class="n">from</span> <span class="n">sklearn</span> <span class="n">import</span> <span class="n">metrics</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">r2_score</span>
+<span class="n">from</span> <span class="n">sklearn</span> <span class="n">import</span> <span class="n">linear_model</span>
+
+<span class="c1"># Fit</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="no">ElasticNet</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="no">False</span><span class="p">)</span>
+<span class="n">regressor</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Metrics</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">regressor</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">.</span><span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">yhat</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">yhat</span><span class="p">))</span></code></pre></figure>
+
+:ET

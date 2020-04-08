@@ -1,0 +1,104 @@
+I"/4<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html">
+Scikit-learn
+</a></p>
+
+<p><a href="https://chrisalbon.com/machine_learning/basics/make_simulated_data_for_classification/">
+Chris Albon
+</a></p>
+
+<p><a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/LogisticRegression.ipynb">
+Notebook
+</a></p>
+
+<h4>Import Libraries</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">datasets</span> <span class="n">import</span> <span class="n">make_classification</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">model_selection</span> <span class="n">import</span> <span class="n">train_test_split</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">linear_model</span> <span class="n">import</span> <span class="no">LogisticRegression</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">f1_score</span></code></pre></figure>
+
+<h4>Binary Logistic Classification</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="c1"># n_classes = 2 by default</span>
+<span class="n">features</span><span class="p">,</span> <span class="n">binary_class</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  
+<span class="c1">#                                              weights=[.4, .6], # weights per class</span>
+                                             <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create a dataframe of the features and add the binary class (label, output)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="nf">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Feature_1'</span><span class="p">,</span> <span class="s1">'Feature_2'</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Binary_Class'</span><span class="p">]</span> <span class="o">=</span> <span class="n">binary_class</span>
+
+<span class="no">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="s1">'Binary_Class'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Binary_Class'</span><span class="p">]</span>
+
+<span class="no">X_train</span><span class="p">,</span> <span class="no">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="no">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Confusion Matrix'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+<span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">).</span><span class="nf">ravel</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Classification Report'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">()</span>  <span class="c1"># Compare with classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Accuracy Score'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">()</span> <span class="c1"># Compare with classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'F1 Score'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="no">None</span><span class="p">))</span></code></pre></figure>
+
+<h4>Multiclass Logistic Regression</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="c1"># https://chrisalbon.com/machine_learning/basics/make_simulated_data_for_classification/</span>
+<span class="c1"># Create a simulated feature matrix and output vector with 100 samples</span>
+<span class="n">features</span><span class="p">,</span> <span class="n">multi_class</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">n_features</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+                                       <span class="n">n_informative</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="c1"># features that actually predict the output's classes</span>
+                                       <span class="n">n_redundant</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># features that are random and unrelated to the output's classes</span>
+<span class="c1">#                                        weights = [.2, .3, .5],</span>
+                                       <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create a dataframe of the features and add the binary class (label, output)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="nf">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Feature_1'</span><span class="p">,</span> <span class="s1">'Feature_2'</span><span class="p">,</span> <span class="s1">'Feature_3'</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Multi_Class'</span><span class="p">]</span> <span class="o">=</span> <span class="n">multi_class</span>
+
+<span class="no">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="s1">'Multi_Class'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Multi_Class'</span><span class="p">]</span>
+
+<span class="no">X_train</span><span class="p">,</span> <span class="no">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="no">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Confusion Matrix'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Classification Report'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">()</span> <span class="c1"># Compare with classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Accuracy Score'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">()</span> <span class="c1"># Compare with classification report</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'F1 Score'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="no">None</span><span class="p">))</span></code></pre></figure>
+
+:ET

@@ -1,0 +1,207 @@
+I"çY<p><br /></p>
+
+<p><a href="https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html">
+Read the Docs
+</a>
+<br />
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">
+Sklearn
+</a>
+<br />
+<a href="https://en.wikipedia.org/wiki/Logistic_regression">
+Wikipedia
+</a>
+<br />
+<a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/LogisticRegressionNotes.ipynb">
+Notebook
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Libraries</span>
+
+<span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">datasets</span> <span class="n">import</span> <span class="n">make_classification</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">linear_model</span> <span class="n">import</span> <span class="no">LogisticRegression</span><span class="p">,</span> <span class="no">LinearRegression</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">model_selection</span> <span class="n">import</span> <span class="n">train_test_split</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">roc_curve</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">metrics</span> <span class="n">import</span> <span class="n">log_loss</span>
+
+<span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="nf">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+
+<span class="c1"># classifier = LogisticRegression()</span>
+<span class="c1"># classifier.fit(x, y)</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>Notes</h4>
+
+<ul>
+<li>Make classification:
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html">
+Make classification
+</a>
+</li>
+<li>Equation:
+<a href="http://www.saedsayad.com/logistic_regression.htm">
+Dr. Saed Sayad
+</a>
+</li>
+<li>Log odds:
+<a href="https://www.statisticshowto.datasciencecentral.com/log-odds/">
+Statistics how to
+</a>
+</li>
+<li>MLE:
+<a href="https://www.bogotobogo.com/python/scikit-learn/Maximum-Likelyhood-Estimation-MLE.php">
+Bogotobogo
+</a>
+</li>
+<li>Sigmoid function:
+<a href="https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6">
+Towards data science
+</a>
+</li>
+<li>The S curve:
+<a href="https://www.goodreads.com/author/quotes/3242685.Pedro_Domingos?page=5">
+Pedro Domingos
+</a>
+</li>
+</ul>
+<p><br /></p>
+
+<h4>Generate Data</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Generate a random n-class classification problem</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="no">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Create a dataframe of the feature and class</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">({</span><span class="s1">'Feature'</span><span class="p">:</span> <span class="no">X</span><span class="p">.</span><span class="nf">flatten</span><span class="p">(),</span> <span class="s1">'Class'</span><span class="p">:</span> <span class="n">y</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dataframe Head'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>Model Summary with Statsmodels</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">print</span><span class="p">(</span><span class="s1">'Model Summary'</span><span class="p">)</span>
+<span class="n">import</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">api</span> <span class="n">as</span> <span class="n">sm</span>
+<span class="n">logit</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="no">Logit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Feature'</span><span class="p">])</span>
+<span class="n">result</span><span class="o">=</span><span class="n">logit</span><span class="p">.</span><span class="nf">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">summary2</span><span class="p">())</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>Model with Sklearn</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">]</span>
+
+<span class="no">X_train</span><span class="p">,</span> <span class="no">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.20</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="no">LogisticRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="no">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Test size'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Iterations: '</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="nf">n_iter_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Intercept: '</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="nf">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Coefficient: '</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="nf">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Accuracy Score'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Confustion matrix'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+<span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">predictions</span><span class="p">).</span><span class="nf">ravel</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'tn: {} fp: {} fn: {} tp: {}'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">tn</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">,</span> <span class="n">tp</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Classification Report'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">ny</span><span class="p">,</span><span class="n">predictions</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Misclassified count and location'</span><span class="p">)</span>
+<span class="n">misclassified</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">(</span><span class="n">ny</span> <span class="o">!=</span> <span class="n">predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">misclassified</span><span class="p">),</span> <span class="n">misclassified</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">loc</span><span class="p">[</span><span class="n">misclassified</span><span class="p">,:])</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>Log Loss</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># https://stackoverflow.com/questions/48185090/how-to-get-the-log-likelihood-for-a-logistic-regression-model-in-sklearn</span>
+<span class="c1"># Every quantity described as "loss", implies "the lower the better"</span>
+
+<span class="c1"># http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html</span>
+<span class="c1"># -log P(yt|yp) = -(yt log(yp) + (1 - yt) log(1 - yp))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">log_loss</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+<span class="n">log_likelihood_elements</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">y_test</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">predictions</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">log_likelihood_elements</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">log_likelihood_elements</span><span class="p">)</span><span class="o">/</span><span class="n">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>ROC / AUC</h4>
+
+<p><a href="https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8">Towards data science</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># https://towardsdatascience.com/building-a-logistic-regression-in-python-step-by-step-becd4d56c9c8</span>
+<span class="n">logit_roc_auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresholds</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict_proba</span><span class="p">(</span><span class="no">X_test</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Logistic Regression (area = %0.2f)'</span> <span class="o">%</span> <span class="n">logit_roc_auc</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span><span class="s1">'r--'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="s1">'False Positive Rate'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="s1">'True Positive Rate'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="s1">'Receiver operating characteristic'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span></code></pre></figure>
+
+<p><br /></p>
+
+<h4>Logistic / Linear Regression Plot</h4>
+
+<p><a href="http://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic.html#sphx-glr-auto-examples-linear-model-plot-logistic-py">Logistic / linear plog</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># http://scikit-learn.org/stable/auto_examples/linear_model/plot_logistic.html#sphx-glr-auto-examples-linear-model-plot-logistic-py</span>
+<span class="c1"># Code source: Gael Varoquaux</span>
+<span class="c1"># License: BSD 3 clause</span>
+
+<span class="c1"># Plot the logistic and linear models</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">clf</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'Feature'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">'Class'</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="no">X_line</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">model_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">model_func</span><span class="p">(</span><span class="no">X_line</span> <span class="o">*</span> <span class="n">model</span><span class="p">.</span><span class="nf">coef_</span> <span class="o">+</span> <span class="n">model</span><span class="p">.</span><span class="nf">intercept_</span><span class="p">).</span><span class="nf">ravel</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="no">X_line</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ols</span> <span class="o">=</span> <span class="no">LinearRegression</span><span class="p">()</span>
+<span class="n">ols</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="no">X_line</span><span class="p">,</span> <span class="n">ols</span><span class="p">.</span><span class="nf">coef_</span> <span class="o">*</span> <span class="no">X_line</span> <span class="o">+</span> <span class="n">ols</span><span class="p">.</span><span class="nf">intercept_</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">axhline</span><span class="p">(</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'.5'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="s1">'Class'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="s1">'Feature'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">(</span><span class="n">range</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">((</span><span class="s1">'Logistic Regression Model'</span><span class="p">,</span> <span class="s1">'Linear Regression Model'</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s2">"lower right"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span></code></pre></figure>
+
+:ET

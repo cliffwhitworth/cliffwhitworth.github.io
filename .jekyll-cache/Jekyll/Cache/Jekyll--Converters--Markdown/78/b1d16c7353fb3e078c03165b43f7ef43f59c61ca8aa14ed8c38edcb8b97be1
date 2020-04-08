@@ -1,0 +1,50 @@
+I"ö<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/datasets/index.html">
+Dataset Loading Utilities
+</a></p>
+
+<p><a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/BostonHousingDataset.ipynb">
+Notebook
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+<span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+<span class="n">import</span> <span class="n">sklearn</span>
+<span class="n">import</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">api</span> <span class="n">as</span> <span class="n">sm</span>
+
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">datasets</span> <span class="n">import</span> <span class="n">load_boston</span>
+<span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Keys'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston</span><span class="p">.</span><span class="nf">keys</span><span class="p">())</span>
+
+<span class="c1"># Print the feature names and the description</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Feature Names'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston</span><span class="p">.</span><span class="nf">feature_names</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Description'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="no">DESCR</span><span class="p">)</span>
+
+<span class="c1"># Print the shape of the data and the target</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Data Shape'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston</span><span class="p">.</span><span class="nf">data</span><span class="p">.</span><span class="nf">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Target Shape'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston</span><span class="p">.</span><span class="nf">target</span><span class="p">.</span><span class="nf">shape</span><span class="p">)</span>
+
+<span class="c1"># Create a dataframe of the data and add the Median Value target</span>
+<span class="n">boston_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="p">.</span><span class="nf">data</span><span class="p">)</span>
+<span class="n">boston_dataframe</span><span class="p">.</span><span class="nf">columns</span> <span class="o">=</span> <span class="n">boston</span><span class="p">.</span><span class="nf">feature_names</span>
+<span class="n">boston_dataframe</span><span class="p">[</span><span class="s1">'MEDV'</span><span class="p">]</span> <span class="o">=</span> <span class="n">boston</span><span class="p">.</span><span class="nf">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dataframe Head'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston_dataframe</span><span class="p">.</span><span class="nf">head</span><span class="p">())</span>
+
+<span class="c1"># Print descriptives</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">boston_dataframe</span><span class="p">.</span><span class="nf">describe</span><span class="p">())</span>
+
+<span class="c1"># Ordinary Least Squares Model</span>
+<span class="n">ols</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="no">OLS</span><span class="p">(</span><span class="n">endog</span> <span class="o">=</span> <span class="n">boston</span><span class="p">.</span><span class="nf">target</span><span class="p">,</span> <span class="n">exog</span> <span class="o">=</span> <span class="n">boston</span><span class="p">.</span><span class="nf">data</span><span class="p">).</span><span class="nf">fit</span><span class="p">()</span>
+<span class="n">ols</span><span class="p">.</span><span class="nf">summary</span><span class="p">()</span></code></pre></figure>
+
+:ET

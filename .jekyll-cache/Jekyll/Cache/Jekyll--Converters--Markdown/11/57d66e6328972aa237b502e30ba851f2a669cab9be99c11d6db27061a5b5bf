@@ -1,0 +1,20 @@
+I"ÿ<p><br />
+<a href="https://docs.python.org/2/library/itertools.html">
+Itertools
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Product(A, B) returns the same as ((x,y) for x in A for y in B).</span>
+<span class="c1"># Product(A, repeat=4) means the same as product(A, A, A, A).</span>
+<span class="n">product</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">permutations</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">combinations</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">combinations_with_replacement</span><span class="p">(</span><span class="s1">'ABCD'</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Excel</span>
+<span class="c1"># PERMUT(n,r)</span>
+<span class="c1"># COMBN(n,r)</span>
+<span class="c1"># PERMUTATIONA(n,r)</span>
+<span class="c1"># COMBINA(n,r)</span></code></pre></figure>
+
+:ET

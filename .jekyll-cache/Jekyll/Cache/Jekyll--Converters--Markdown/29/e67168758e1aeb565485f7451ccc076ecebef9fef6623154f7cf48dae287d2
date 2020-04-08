@@ -1,0 +1,125 @@
+I"»I<p><br /></p>
+
+<p><a href="https://keras.io/layers/convolutional/">
+Convolutional Layers
+</a>
+<br />
+<a href="https://keras.io/layers/pooling/">
+Pooling
+</a>
+<br />
+<a href="https://keras.io/layers/core/">
+Dense and Flatten
+</a>
+<br />
+<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/">
+Intuitive Explanation
+</a>
+<br />
+<a href="http://adventuresinmachinelearning.com/keras-tutorial-cnn-11-lines/">
+CNN in 11 lines
+</a>
+<br />
+<a href="http://adventuresinmachinelearning.com/convolutional-neural-networks-tutorial-tensorflow/">
+Tutorial for TensorFlow
+</a>
+<br />
+<a href="http://dataaspirant.com/2017/03/07/difference-between-softmax-function-and-sigmoid-function/">
+Sigmoid vs Softmax
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Importing libraries</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">models</span> <span class="n">import</span> <span class="no">Sequential</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Conv2D</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">MaxPooling2D</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Flatten</span>
+<span class="n">from</span> <span class="n">keras</span><span class="p">.</span><span class="nf">layers</span> <span class="n">import</span> <span class="no">Dense</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">model</span> <span class="o">=</span> <span class="no">Sequential</span><span class="p">()</span>
+
+<span class="c1"># First convolutional layer</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'relu'</span><span class="p">))</span>
+
+<span class="c1"># Pooling or downsampling</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="c1"># Second convolutional layer and pooling</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span> <span class="o">=</span> <span class="s1">'relu'</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+
+<span class="c1"># Flatten for the fully connected layers</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Flatten</span><span class="p">())</span>
+
+<span class="c1"># Fully connected layers (neural nets)</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Dense</span><span class="p">(</span><span class="n">number_of_units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="no">Dense</span><span class="p">(</span><span class="n">number_of_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">))</span>
+
+<span class="c1"># Optimization algorithm, loss function, and evaluation metric</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="s1">'adam'</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">'binary_crossentropy'</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">tensorflow</span> <span class="n">as</span> <span class="n">tf</span>
+
+<span class="c1"># using MNIST</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="no">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="no">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">shape</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="no">K</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="no">Model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="no">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">tensorflow</span> <span class="n">as</span> <span class="n">tf</span>
+
+<span class="c1"># using CIFAR</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="no">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">shape</span><span class="p">)</span>
+<span class="c1"># x = Conv2D(32, (3, 3), strides=2, activation='relu')(i)</span>
+<span class="c1"># x = Conv2D(64, (3, 3), strides=2, activation='relu')(x)</span>
+<span class="c1"># x = Conv2D(128, (3, 3), strides=2, activation='relu')(x)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># x = Dropout(0.2)(x)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># x = Dropout(0.2)(x)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Conv2D</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">'same'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">MaxPooling2D</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># x = Dropout(0.2)(x)</span>
+
+<span class="c1"># x = GlobalMaxPooling2D()(x)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="no">Dense</span><span class="p">(</span><span class="no">K</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">'softmax'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="no">Model</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">'adam'</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="s1">'sparse_categorical_crossentropy'</span><span class="p">,</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">'accuracy'</span><span class="p">])</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">),</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code></pre></figure>
+:ET

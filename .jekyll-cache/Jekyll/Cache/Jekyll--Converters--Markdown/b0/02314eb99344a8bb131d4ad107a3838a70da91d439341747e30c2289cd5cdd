@@ -1,0 +1,15 @@
+I"2<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/naive_bayes.html">
+Sklearn
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Split</span>
+<span class="c1"># Scale</span>
+
+<span class="c1"># Fit</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">naive_bayes</span> <span class="n">import</span> <span class="no">GaussianNB</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="no">GaussianNB</span><span class="p">()</span>
+<span class="n">classifier</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span></code></pre></figure>
+
+:ET

@@ -1,0 +1,73 @@
+I"!<p><br />
+<a href="https://www.analyticsvidhya.com/blog/2016/07/deeper-regression-analysis-assumptions-plots-solutions/">
+Analytics Vidhya
+</a>
+<br />
+<a href="https://www.analyticsvidhya.com/blog/2016/07/deeper-regression-analysis-assumptions-plots-solutions/">
+Ziganto
+</a>
+<br />
+<a href="http://www.statsmodels.org/dev/diagnostic.html">
+Stats Model
+</a></p>
+
+<h4>Ordinary Least Squares</h4>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">import</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">formula</span><span class="p">.</span><span class="nf">api</span> <span class="n">as</span> <span class="n">ols</span>
+<span class="no">X_with_bias</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">len</span><span class="p">(</span><span class="no">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)).</span><span class="nf">astype</span><span class="p">(</span><span class="n">int</span><span class="p">),</span> <span class="n">values</span> <span class="o">=</span> <span class="no">X</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ols</span><span class="o">.</span><span class="no">OLS</span><span class="p">(</span><span class="n">endog</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">y</span><span class="p">).</span><span class="nf">flatten</span><span class="p">(),</span> <span class="n">exog</span> <span class="o">=</span> <span class="no">X_with_bias</span><span class="p">).</span><span class="nf">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">summary</span><span class="p">())</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Variance Inflation Factor (Multicolinearity)</h4>
+<p><a href="https://etav.github.io/python/vif_factor_python.html">
+Ernest Tavares III
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">stats</span><span class="p">.</span><span class="nf">outliers_influence</span> <span class="n">import</span> <span class="n">variance_inflation_factor</span>
+<span class="n">vif</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">()</span>
+<span class="n">vif</span><span class="p">[</span><span class="s2">"VIF Factor"</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">variance_inflation_factor</span><span class="p">(</span><span class="no">X</span><span class="p">.</span><span class="nf">values</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="no">X</span><span class="p">.</span><span class="nf">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+<span class="n">vif</span><span class="p">[</span><span class="s2">"features"</span><span class="p">]</span> <span class="o">=</span> <span class="no">X</span><span class="p">.</span><span class="nf">columns</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Outliers</h4>
+<p><a href="https://stackoverflow.com/questions/10231206/can-scipy-stats-identify-and-mask-obvious-outliers">
+StackOverflow Answer
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">formula</span><span class="p">.</span><span class="nf">api</span> <span class="n">import</span> <span class="n">ols</span>
+<span class="n">regression</span> <span class="o">=</span> <span class="n">ols</span><span class="p">(</span><span class="s2">"data ~ x"</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)).</span><span class="nf">fit</span><span class="p">()</span>
+<span class="nb">test</span> <span class="o">=</span> <span class="n">regression</span><span class="p">.</span><span class="nf">outlier_test</span><span class="p">()</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="k">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="nb">test</span><span class="p">.</span><span class="nf">icol</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Outliers: '</span><span class="p">,</span> <span class="n">list</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Heteroscedasticity</h4>
+<p><a href="http://www.statsmodels.org/dev/examples/notebooks/generated/regression_diagnostics.html">
+Stats Model Examples
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">compat</span> <span class="n">import</span> <span class="n">lzip</span>
+<span class="n">import</span> <span class="n">statsmodels</span><span class="p">.</span><span class="nf">stats</span><span class="p">.</span><span class="nf">api</span> <span class="n">as</span> <span class="n">sms</span>
+<span class="nb">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'F statistic'</span><span class="p">,</span> <span class="s1">'p-value'</span><span class="p">]</span>
+<span class="nb">test</span> <span class="o">=</span> <span class="n">sms</span><span class="p">.</span><span class="nf">het_goldfeldquandt</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="nf">resid</span><span class="p">,</span> <span class="n">result</span><span class="p">.</span><span class="nf">model</span><span class="p">.</span><span class="nf">exog</span><span class="p">)</span>
+<span class="n">lzip</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="nb">test</span><span class="p">)</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Linearity</h4>
+
+<p><a href="http://www.statsmodels.org/dev/examples/notebooks/generated/regression_diagnostics.html">
+Stats Model Examples
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">name</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'t value'</span><span class="p">,</span> <span class="s1">'p value'</span><span class="p">]</span>
+<span class="nb">test</span> <span class="o">=</span> <span class="n">sms</span><span class="p">.</span><span class="nf">linear_harvey_collier</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">lzip</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="nb">test</span><span class="p">)</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Influence Tests</h4>
+
+<p><a href="http://www.statsmodels.org/dev/examples/notebooks/generated/regression_diagnostics.html">
+Stats Model Examples
+</a></p>
+:ET

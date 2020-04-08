@@ -1,0 +1,15 @@
+I"<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC">
+SVC
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Split</span>
+<span class="c1"># Scale</span>
+
+<span class="c1"># Fit</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">svm</span> <span class="n">import</span> <span class="no">SVC</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="no">SVC</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="s1">'linear'</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">classifier</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span></code></pre></figure>
+
+:ET

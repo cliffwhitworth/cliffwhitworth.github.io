@@ -1,0 +1,29 @@
+I"r
+<p><br /></p>
+
+<p><a href="http://scikit-learn.org/stable/modules/svm.html#regression">
+Support Vector Regression
+</a>
+<br />
+<a href="http://scikit-learn.org/stable/auto_examples/svm/plot_svm_regression.html#sphx-glr-auto-examples-svm-plot-svm-regression-py">
+Examples
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># No Split</span>
+<span class="c1"># Scale</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">preprocessing</span> <span class="n">import</span> <span class="no">StandardScaler</span>
+<span class="n">sc_X</span> <span class="o">=</span> <span class="no">StandardScaler</span><span class="p">()</span>
+<span class="n">sc_y</span> <span class="o">=</span> <span class="no">StandardScaler</span><span class="p">()</span>
+<span class="no">X</span> <span class="o">=</span> <span class="n">sc_X</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="no">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(</span><span class="n">sc_y</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+
+<span class="c1"># Fit</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">svm</span> <span class="n">import</span> <span class="no">SVR</span>
+<span class="n">regressor</span> <span class="o">=</span> <span class="no">SVR</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="s1">'rbf'</span><span class="p">)</span>
+<span class="n">regressor</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># predictions</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">regressor</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span>
+<span class="n">yhat</span> <span class="o">=</span> <span class="n">sc_y</span><span class="p">.</span><span class="nf">inverse_transform</span><span class="p">(</span><span class="n">yhat</span><span class="p">)</span></code></pre></figure>
+
+:ET

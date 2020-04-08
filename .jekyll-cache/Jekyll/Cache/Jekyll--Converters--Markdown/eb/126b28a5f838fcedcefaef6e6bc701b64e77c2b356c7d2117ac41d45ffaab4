@@ -1,0 +1,18 @@
+I"<p><br /></p>
+<h4>Pandas Dataframe</h4>
+<p><br />
+<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">
+Documentation
+</a>
+<br /></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Create a dataframe of the features and add the target</span>
+<span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="no">DataFrame</span><span class="p">(</span><span class="no">Features</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="nf">columns</span> <span class="o">=</span> <span class="p">[</span><span class="no">Feature_Names</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">'Target'</span><span class="p">]</span> <span class="o">=</span> <span class="no">Target</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Dataframe Head'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="nf">head</span><span class="p">())</span></code></pre></figure>
+
+:ET

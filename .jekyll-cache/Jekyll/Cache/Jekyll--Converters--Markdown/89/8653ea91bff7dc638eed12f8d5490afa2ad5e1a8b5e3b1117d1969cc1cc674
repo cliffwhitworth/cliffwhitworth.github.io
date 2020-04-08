@@ -1,0 +1,18 @@
+I"9<p><br /></p>
+<h4>Sample Correlation Coefficient</h4>
+
+<p><a href="https://en.wikipedia.org/wiki/Correlation_and_dependence#Pearson's_product-moment_coefficient">
+Wikipedia
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># from scipy import stats</span>
+<span class="c1"># from statistics import variance</span>
+
+<span class="n">x_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">]</span>
+<span class="n">y_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">]</span>
+
+
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Stats Pearsonr: '</span><span class="p">,</span> <span class="n">stats</span><span class="p">.</span><span class="nf">pearsonr</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">'Numpy CorrCoef: '</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">corrcoef</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span> <span class="n">y_array</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span></code></pre></figure>
+
+:ET

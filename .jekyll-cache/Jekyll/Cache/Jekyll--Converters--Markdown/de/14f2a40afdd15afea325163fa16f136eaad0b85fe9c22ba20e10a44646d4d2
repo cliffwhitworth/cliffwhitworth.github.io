@@ -1,0 +1,60 @@
+I",<p><br /></p>
+<h4>Grid Search</h4>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV">
+Grid Search
+</a>
+<br />
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html#sklearn.svm.SVC">
+SVC Parameters Example
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># using grid search for sklearn.svm.SVC</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">model_selection</span> <span class="n">import</span> <span class="no">GridSearchCV</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">'kernel'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'linear'</span><span class="p">]},</span>
+              <span class="p">{</span><span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">'kernel'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'rbf'</span><span class="p">],</span> <span class="s1">'gamma'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]}]</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="no">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">,</span>
+                           <span class="n">param_grid</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">,</span>
+                           <span class="n">scoring</span> <span class="o">=</span> <span class="s1">'accuracy'</span><span class="p">,</span>
+                           <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                           <span class="n">n_jobs</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">grid_search</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="no">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">best_accuracy</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">.</span><span class="nf">best_score_</span>
+<span class="n">best_parameters</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">.</span><span class="nf">best_params_</span></code></pre></figure>
+
+<p><br /></p>
+<h4>K-Fold Cross Validation</h4>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.cross_val_score.html#sklearn.model_selection.cross_val_score">
+Sklearn
+</a>
+<br />
+<a href="https://towardsdatascience.com/train-test-split-and-cross-validation-in-python-80b61beca4b6">
+Towards Data Science
+</a>
+<br />
+<a href="https://www.kaggle.com/dansbecker/cross-validation">
+Kaggle
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># imports needed</span>
+<span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">model_selection</span> <span class="n">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">cross_val_predict</span>
+<span class="n">from</span> <span class="n">sklearn</span> <span class="n">import</span> <span class="n">metrics</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">"Cross-validated scores:"</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">metrics</span><span class="p">.</span><span class="nf">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">"R-squared:"</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span></code></pre></figure>
+
+<p><br /></p>
+<h4>Test Train Split</h4>
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">
+Test Train Split
+</a>
+<br />
+<a href="https://www.udemy.com/machinelearning/">
+https://www.udemy.com/machinelearning/
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">from</span> <span class="n">sklearn</span><span class="p">.</span><span class="nf">model_selection</span> <span class="n">import</span> <span class="n">train_test_split</span>
+<span class="no">X_train</span><span class="p">,</span> <span class="no">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="no">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span></code></pre></figure>
+
+:ET

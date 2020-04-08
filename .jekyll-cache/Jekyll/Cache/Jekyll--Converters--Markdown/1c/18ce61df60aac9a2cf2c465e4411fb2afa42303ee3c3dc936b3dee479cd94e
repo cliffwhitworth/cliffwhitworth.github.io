@@ -1,0 +1,16 @@
+I"ú<p><br /></p>
+<h4>Sample Variance</h4>
+
+<p><a href="https://en.wikipedia.org/wiki/Variance#Sample_variance">
+Wikipedia
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># from scipy import stats</span>
+<span class="c1"># from statistics import variance</span>
+
+<span class="n">x_array</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="k">in</span> <span class="n">dataset</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Statistics variance: '</span><span class="p">,</span> <span class="n">variance</span><span class="p">(</span><span class="n">x_array</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Numpy variance (sample): '</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">var</span><span class="p">(</span><span class="n">x_array</span><span class="p">,</span><span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span></code></pre></figure>
+
+:ET

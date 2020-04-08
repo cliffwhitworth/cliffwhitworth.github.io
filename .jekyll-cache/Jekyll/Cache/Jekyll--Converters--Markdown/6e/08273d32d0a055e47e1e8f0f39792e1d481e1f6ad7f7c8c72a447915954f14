@@ -1,0 +1,12 @@
+I"7<p><br /></p>
+<h4>DateTime</h4>
+<p>Date variables should no be used as categorical data</p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/timeseries.html#time-date-components">
+DateTime Components
+</a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># To datetime</span>
+<span class="n">dataframe</span><span class="p">[</span><span class="s1">'Date Type Column'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">to_datetime</span><span class="p">(</span><span class="n">dataframe</span><span class="p">.</span><span class="nf">date_column_as_string</span><span class="p">)</span>
+<span class="n">dataframe</span><span class="p">[</span><span class="s1">'Month'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">.</span><span class="nf">date_column_as_string</span><span class="p">.</span><span class="nf">dt</span><span class="p">.</span><span class="nf">month</span></code></pre></figure>
+
+:ET
