@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Adabooster Classifier"
-date: 2020-04-09 16:25:06
+title: "Adaboost Classifier"
+date: 2020-04-09 16:25:06 
 comments: false
 ---
 
