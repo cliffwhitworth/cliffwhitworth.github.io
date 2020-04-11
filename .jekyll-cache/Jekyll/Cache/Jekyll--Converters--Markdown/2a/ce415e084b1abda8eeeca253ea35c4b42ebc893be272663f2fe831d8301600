@@ -1,0 +1,28 @@
+I"<ul>
+  <li><a href="https://matplotlib.org/3.1.1/tutorials/intermediate/tight_layout_guide.html">Documentation</a></li>
+  <li><a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/EsigningLoan.ipynb">Usage</a></li>
+</ul>
+
+<p>Using Tight Layout to Position Suptitle</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># plot_features contains the features to plot
+import Matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(15, 12))
+for i in range(plot_features.shape[1]):
+    plt.subplot(6, 3, i + 1)
+    ax = plt.gca()
+    ax.set_title(plot_features.columns.values[i])
+    vals = np.size(plot_features.iloc[:, i].unique())
+    if vals &gt;= 100:
+        vals = 100
+        
+    plt.hist(plot_features.iloc[:, i], bins=vals)
+
+plt.suptitle('Histograms of Features', fontsize=18)
+plt.tight_layout(pad=0.4, rect=[0, 0.03, 1, 0.95])
+plt.show()
+</code></pre></div></div>
+<p>rect=[left, bottom, right, top] in normalized (0, 1) figure coordinates</p>
+
+:ET
