@@ -1,0 +1,20 @@
+I"o<ul>
+  <li><a href="https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/EsigningLoan.ipynb">Usage</a></li>
+</ul>
+
+<p>Create and plot a confusion matrix</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Confusion matrix with Seaborn
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sn
+
+cm = confusion_matrix(y_test, predictions)
+print(cm)
+sn.heatmap(cm, annot=True, cmap='BuPu', fmt='d')
+plt.title('Confusion Matrix')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.show()
+</code></pre></div></div>
+:ET
