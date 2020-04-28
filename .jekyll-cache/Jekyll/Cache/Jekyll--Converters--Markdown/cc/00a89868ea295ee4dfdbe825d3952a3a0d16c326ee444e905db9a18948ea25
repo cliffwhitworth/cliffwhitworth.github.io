@@ -1,0 +1,12 @@
+I"†<ul>
+  <li><a href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html">Documentation</a></li>
+</ul>
+
+<p>This function is useful to massage a DataFrame into a format where one or more columns are identifier variables, while other variables are considered measures.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Pivot simulating Tableau pivot
+keys = ['NSW', 'QLD', 'VIC', 'WA']
+tm = pd.melt(t, id_vars='Turnover_Date', value_vars=keys, var_name='State', value_name='Turnover $M')
+tm.sort_values(['Turnover_Date', 'State']).reset_index().drop('index', axis=1).head()
+</code></pre></div></div>
+:ET

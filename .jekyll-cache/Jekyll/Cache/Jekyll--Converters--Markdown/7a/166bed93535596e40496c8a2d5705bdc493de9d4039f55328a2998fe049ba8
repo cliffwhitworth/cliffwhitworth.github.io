@@ -1,0 +1,17 @@
+I"N<p>Create a new dataframe from existing dataframe</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Keep the first column
+turnover_df = pd.DataFrame(data=turnover.iloc[:, 0].values, columns=['Turnover_Date'])
+</code></pre></div></div>
+
+<p>Add columns based on some text in columns</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>QLD_cols = [col for col in turnover.columns.values if 'Queensland' in col and 'Clothing retailing' in col]
+turnover_df[turnover[QLD_cols].columns] = turnover[QLD_cols]
+print(turnover_df.shape)
+turnover_df.head()
+</code></pre></div></div>
+
+<p>Save df to csv</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>turnover_df.to_csv(r'./turnover.csv', index = False, header = True)
+</code></pre></div></div>
+:ET
