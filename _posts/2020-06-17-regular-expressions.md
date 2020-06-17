@@ -7,13 +7,18 @@ comments: false
 
 Regular Expressions
 
-Abbreviate words in a string
+Abbreviate words in a string including lookbehind
 ```
 import re
 
 words = 'as far as i know'
 print(''.join(re.findall(r'^\w|(?<=[\s_-])[a-zA-Z]', words.upper())))
 ```
+
+Using lookahead
+```
+words = 'words-with-hypens and without'
+print(re.findall(r'\w+(?=\b)', words))
 
 Using word boundaries
 ```
