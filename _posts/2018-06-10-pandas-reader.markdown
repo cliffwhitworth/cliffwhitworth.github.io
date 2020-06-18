@@ -2,7 +2,7 @@
 layout: post
 title:  "Pandas Datareader"
 date:   2018-06-10 05
-categories: More
+categories: Pandas
 ---
 <br />
 <h4>IEX Example</h4>

@@ -3,6 +3,7 @@ layout: post
 title: "Confusion Matrix"
 date: 2020-04-23 09:53:00 
 comments: false
+categories: More
 ---
 
 * [Usage](https://nbviewer.jupyter.org/github/cliffwhitworth/machine_learning_notebooks/blob/master/DecisionTree.ipynb)

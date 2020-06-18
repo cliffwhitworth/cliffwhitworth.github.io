@@ -3,6 +3,7 @@ layout: post
 title: "Suptitle and Tight_Layout"
 date: 2020-04-10 09:53:00 
 comments: false
+categories: More
 ---
 
 * [Documentation](https://matplotlib.org/3.1.1/tutorials/intermediate/tight_layout_guide.html)

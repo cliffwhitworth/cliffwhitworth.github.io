@@ -3,6 +3,7 @@ layout: post
 title: "Pandas.DataFrame.isin"
 date: 2020-04-08 16:25:06
 comments: false
+categories: Pandas
 ---
 
 * [Documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.isin.html)

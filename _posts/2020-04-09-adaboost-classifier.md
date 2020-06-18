@@ -3,6 +3,7 @@ layout: post
 title: "AdaBoost Classifier"
 date: 2020-04-09 16:25:06 
 comments: false
+categories: Classification
 ---
 
 * [Documentation](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html)

@@ -3,6 +3,7 @@ layout: post
 title: "Dataframe from Dataframe"
 date: 2020-04-28 15:53:00 
 comments: false
+categories: Pandas
 ---
 
 Create a new dataframe from existing dataframe

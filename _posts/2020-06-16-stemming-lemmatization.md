@@ -3,6 +3,7 @@ layout: post
 title: "NLTK Stemming and Lemmatization"
 date: 2020-06-16 13:37:00 
 comments: false
+categories: NLP
 ---
 
 NLTK Stemming and Lemmatization

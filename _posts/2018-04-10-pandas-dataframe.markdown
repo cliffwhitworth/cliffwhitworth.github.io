@@ -2,7 +2,7 @@
 layout: post
 title:  "Pandas Dataframe"
 date:   2018-04-10 04
-categories: More
+categories: Pandas
 ---
 <br />
 <h4>Pandas Dataframe</h4>
