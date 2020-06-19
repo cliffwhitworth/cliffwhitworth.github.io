@@ -20,6 +20,7 @@ Using lookahead
 ```
 words = 'words-with-hypens and without'
 print(re.findall(r'\w+(?=\b)', words))
+```
 
 Using word boundaries
 ```
