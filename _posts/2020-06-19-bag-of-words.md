@@ -6,31 +6,12 @@ comments: false
 categories: NLP
 ---
 
-Bag of Words
+Bag of Words given freq_words, tokenize sentences dataset
 ```
 import pandas as pd
 import numpy as np
-import heapq
 import nltk
 import re
-
-# Break text into sentences
-dataset = nltk.sent_tokenize(text)
-for i in range(len(dataset)):
-    dataset[i] = re.sub(r'[\W\s]+', ' ', dataset[i]).lower()
-
-# Get word count
-wordcount = {}
-for data in dataset:
-    words = nltk.word_tokenize(data)
-    for word in words:
-        if word in wordcount.keys():
-            wordcount[word] += 1
-        else:
-            wordcount[word] = 1
-
-# Get the 100 most used words
-freq_words = heapq.nlargest(100, wordcount, key=wordcount.get)
 
 # Get the count for the most used words per sentence
 X = []
