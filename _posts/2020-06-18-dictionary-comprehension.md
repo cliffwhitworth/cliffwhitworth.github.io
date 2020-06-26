@@ -3,7 +3,7 @@ layout: post
 title: "Dictionary Comprehension"
 date: 2020-06-18 15:24:00 
 comments: false
-categories: More
+categories: Python
 ---
 
 Dictionary Comprehension

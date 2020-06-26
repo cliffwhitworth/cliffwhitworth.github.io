@@ -3,7 +3,7 @@ layout: post
 title: "List Comprehension"
 date: 2020-06-18 13:03:00 
 comments: false
-categories: More
+categories: Python
 ---
 
 List Comprehension

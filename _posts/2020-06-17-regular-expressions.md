@@ -3,7 +3,7 @@ layout: post
 title: "Regular Expressions"
 date: 2020-06-17 12:48:00 
 comments: false
-categories: More
+categories: Python
 ---
 
 Regular Expressions

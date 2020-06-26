@@ -40,6 +40,12 @@ layout: default
             <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>
         {% endfor %}
     </ul> 
+    <strong>Python</strong>
+    <ul>
+        {% for post in site.categories.Python %}
+            <li><a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a></li>  
+        {% endfor %}
+    </ul> 
     <strong>Pandas</strong>
     <ul>
         {% for post in site.categories.Pandas %}
