@@ -32,3 +32,10 @@ Character replacement
 ```
 re.sub(r'[!&@$%^&_,-]', ' ', sentence)
 ```
+
+Pangram
+```
+sentence = 'the quick brown fox jumps over the lazy dog'
+print(string.ascii_lowercase == ''.join(
+    sorted(set(re.sub(r'[\d\\"!&@$%^&_,-.]', '', sentence.lower())))).strip())
+```
