@@ -22,4 +22,5 @@ Map
 ```
 def foo(bar):
     return [x for x in map(dictionary.get, list[bar])]
+    # [dictionary[i] for i in object]
 ```
