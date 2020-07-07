@@ -91,3 +91,22 @@ print('w = ', np.linalg.inv(x_stack.T.dot(x_stack)).dot(x_stack.T).dot(Y))
 or
 print('w = ', np.linalg.inv(X.T.dot(X)).dot(X.T).dot(Y))
 {% endhighlight %}
+
+<br />
+<h4>Example 4 using Linear Regression Model</h4>
+<br />
+{% highlight ruby %}
+from sklearn.linear_model import LinearRegression
+
+x = [1, 2, 3, 4, 5]
+y = [1, 3, 2, 3, 5]
+
+x_r = np.array(x).reshape(-1, 1)
+y_r = np.array(y)
+model = LinearRegression()
+model.fit(x_r, y_r)
+print(f'{model.coef_}x + {model.intercept_}')
+print(f'Score: {model.score(x_r, y_r)}')
+for i, n in enumerate(x):
+    print(model.predict(np.array([[n]])), y[i])
+{% endhighlight %}
