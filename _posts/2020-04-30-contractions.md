@@ -3,7 +3,7 @@ layout: post
 title: "Contractions Dictionary"
 date: 2020-04-30 13:53:00 
 comments: false
-categories: More
+categories: NLP
 ---
 
 * [Credit](https://www.analyticsvidhya.com/blog/2020/04/beginners-guide-exploratory-data-analysis-text-data/)
@@ -67,4 +67,29 @@ def expand_contractions(text, contractions_dict=contractions_dict):
 Expand contractions
 ```
 data['reviews.text'] = data['reviews.text'].apply(lambda x: expand_contractions(x))
+```
+
+Expand contractions and clean
+```
+import re
+from contractions import contractions
+
+def clean(s):
+    # Replace contractions
+    if True:
+        s = s.split()
+        clean_s = []
+        for word in s:
+            if word in contractions:
+                clean_s.append(contractions[word])
+            else:
+                clean_s.append(word)
+                
+        s = ' '.join(clean_s)
+        
+    s = re.sub(r'<.*?>|[^a-zA-Z. ]', '', s)
+    
+    return s
+
+clean(sentence)
 ```
