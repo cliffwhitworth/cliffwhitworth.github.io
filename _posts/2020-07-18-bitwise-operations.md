@@ -1188,3 +1188,19 @@ Returns
 [128,  64,  32,  16,   8,   4,   2,   1]
 [  1,   1,   1,   1,   1,   1,   1,   1]
 ```
+
+```
+# https://exercism.io/tracks/python/exercises/grains/solutions/5d0bba79fb2343c18a4e5f6098f75c2a 
+
+def square(number):
+    if 0 < number < 65:
+        # 2**(number-1)
+        return 1 << (number-1)
+        
+    raise ValueError("ValueError exception thrown")
+
+def total():
+    # (2**64) - 1
+    return (1 << 64) - 1
+
+```
