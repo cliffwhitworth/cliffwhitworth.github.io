@@ -6,8 +6,6 @@ comments: false
 categories: Python
 ---
 
-Transposition Map
-
 ```
 import string
 
