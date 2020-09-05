@@ -38,3 +38,13 @@ from collections import deque
 my_sequence = 'abcdefg'
 my_sequence.rotate(-3)
 ```
+
+List of strings to list of characters<br />
+```
+char_list = list(''.join(['abc', 'def', 'ghi]))
+```
+
+Flatten list of lists
+```
+print([item for sublist in [['a', 'b', 'c'], ['d', 'e', 'f'], ['g', 'h', 'i']] for item in sublist])
+```
