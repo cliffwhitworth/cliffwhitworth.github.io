@@ -51,10 +51,10 @@ def count_seq(cntr):
     return decorator
 
 @count_seq(1)
-def greet():
-    return 'hello world!'
+def greet(s='hello'):
+    return s
 
-print(greet())
+print(greet('hello world!'))
 
 # Outputs
 # 1. in cont_seq function
