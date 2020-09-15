@@ -9,7 +9,6 @@ categories: Python
 Without single dispatch
 ```
 # Fred Baptiste Python Deep Dive
-import re
 from html import escape
 
 s = """this is 
