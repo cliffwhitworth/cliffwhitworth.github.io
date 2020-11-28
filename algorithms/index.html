@@ -22,6 +22,7 @@
     export const countWords = s => {
         const wordCnt = {};
         s.toLowerCase()
+          .replace(/[!@$%^&_]/g, ' ')
           .match(/\w+('[\w+])?/g)
           .map(word => {
             wordCnt[word] ? wordCnt[word]++ : wordCnt[word] = 1
@@ -79,12 +80,13 @@
 
     def is_paired(input_string): 
         input_string = re.sub(r'[^()[\]{}]', '', input_string)
-        while re.search(r'\(\)|\[]|\{}', input_string):
-            input_string = re.sub(r'\(\)|\[]|\{}', '', input_string)
+        while re.search(r'\(\)|\[\]|\{\}', input_string):
+            input_string = re.sub(r'\(\)|\[\]|\{\}', '', input_string)
 
         return len(input_string) == 0
 </pre>
 
+<hr />
 <h2>Reverse</h2>
 <hr />
 <h3>Python</h3>
@@ -138,10 +140,21 @@
             charset.add(c)
 
     return True 
+
+    def is_isogram(string):
+        iso_check = set(re.findall(r'\w', string))
+        return len(iso_check) == len(re.findall(r'\w', string))
 </pre>
 <h3>JavaScript</h3>
 <pre>
     export const isIsogram = s => !s.match(/([a-z]).*\1/i);
+    Here the \1 is called a backreference. To make sure that the pattern 
+    looks for the closing quote exactly the same as the opening one, we 
+    can wrap it into a capturing group and backreference it: (['"])(.*?)\1.
+
+    let str = `He said: "She's the one!".`;
+    let regexp = /(['"])(.*?)\1/g;
+    console.log( str.match(regexp) ); // "She's the one!"
 </pre>
 <h3>C#</h3>
 <pre>
@@ -203,6 +216,8 @@
 <h3>JavaScript</h3>
 <pre>
     export const isPangram = str => new Set(str.toLowerCase().match(/[a-z]/g)).size===26;
+
+    const isPangram = s => new Set(s.match(/[a-z]/ig)).size === 26;
 </pre>
 <h3>C#</h3>
 <pre>
@@ -254,7 +269,7 @@
 <pre>
     def to_rna(dna_strand):
         strand_dict = {'G': 'C', 'C': 'G', 'T': 'A', 'A': 'U'}
-        return ''.join([x for x in map(strand_dict.get, dna_strand)])
+        return ''.join(x for x in map(strand_dict.get, dna_strand))
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -320,7 +335,21 @@
         }
       
         return cnt;
-    };
+    }
+
+    const hamming = (a, b) => {
+        if (!a) throw new Error('Must have a');
+        if (!b) throw new Error('Must have b');
+        if (a.length != b.length) {
+            throw new Error('Must be equal length');
+        }
+    
+        let cnt = 0;
+        a.split('').forEach((_, i) => {
+            if (a.split('')[i] != b.split('')[i]) cnt++;
+        });
+        return cnt;
+    }
 </pre>
 <h3>C#</h3>
 <pre>
@@ -378,6 +407,8 @@
     export const gigasecond = d => {
         return new Date(d.getTime() + (1000000000 * 1000));
     };
+
+    const giga = t => new Date(t.getTime() + (1000000000 * 1000))
 </pre>
 <h3>C#</h3>
 <pre>
@@ -408,7 +439,7 @@
 <h3>Python</h3>
 <pre>
     def is_armstrong_number(number):
-        return sum([int(i)**len(str(number)) for i in str(number)]) == number
+        return sum(int(i)**len(str(number)) for i in str(number)) == number
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -464,10 +495,10 @@
 <h3>Python</h3>
 <pre>
     def square_of_sum(number):
-        return sum([n for n in range(1, number+1)])**2
+        return sum(n for n in range(1, number+1))**2
 
     def sum_of_squares(number):
-        return sum([n**2 for n in range(1, number+1)])
+        return sum(n**2 for n in range(1, number+1))
 
     def difference_of_squares(number):
         return square_of_sum(number) - sum_of_squares(number)
@@ -544,6 +575,9 @@
 <pre>
     def sum_of_multiples(limit, multiples):
         return sum({i * m for m in multiples for i in range(limit) if i * m < limit})
+
+    def sum_multiples(arr, lim):
+        return sum({i for i in range(lim) for a in arr if i % a == 0})
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -552,6 +586,12 @@
                 .filter(i => multiples.some(m => i % m == 0))
                 .reduce((acc, cv) => acc + cv, 0);
     };
+
+    const sumMultiples = (arr, lim) => {
+        return Array.from(Array(lim).keys())
+                .filter(i => arr.some(n => i % n == 0))
+                .reduce((a, b) => a + b)
+    }
 </pre>
 <h3>C#</h3>
 <pre>
