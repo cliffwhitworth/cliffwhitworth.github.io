@@ -658,27 +658,42 @@
 <pre>
     export class GradeSchool {
         constructor() {
-          this.school = {};    
+            <!-- this.school = {};     -->
+            this.students = {};
         }
       
         roster() {
-          return JSON.parse(JSON.stringify(this.school));
+            <!-- return JSON.parse(JSON.stringify(this.school)); -->
+            let grades = new Set(Object.values(this.students).sort((a, b) => a - b));
+            const sorted_roster = []
+            grades.forEach( g => {
+                sorted_roster.push(Object.entries(this.students)
+                                .filter(s => s[1] === g)
+                                .sort()
+                                .reduce((arr, val) => arr.concat(val), []));
+            });
+            return JSON.parse(JSON.stringify(sorted_roster));
         };
       
         add(name, grade) {
-          if ( this.school[grade] ) {
-            this.school[grade] = this.school[grade].concat(name).sort();
-          } else {
-            this.school[grade] = [name];
-          }  
+            <!-- if ( this.school[grade] ) {
+                this.school[grade] = this.school[grade].concat(name).sort();
+            } else {
+                this.school[grade] = [name];
+            }  
+            output { '2': [ 'Aimee' ] } -->
+            
+            this.students[name] = grade;  
         }
       
         grade(grade) {
-          if ( this.school[grade] ) {
-            return JSON.parse(JSON.stringify(this.school[grade]));
-          } else {
-            return [];
-          }    
+            <!-- if ( this.school[grade] ) {
+                return JSON.parse(JSON.stringify(this.school[grade]));
+            } else {
+                return [];
+            } -->
+            
+            return JSON.parse(JSON.stringify(Object.entries(this.students).filter(s => s[1] === grade)));
         }
     }
 </pre>
@@ -715,6 +730,42 @@
 </pre>
 <h3>JavaScript</h3>
 <pre>
+    class Robot {
+        constructor() {
+            this.cache = [];
+            this.createName();
+        }
+    
+        get name() {
+            return this.cache[this.cache.length - 1]
+        } 
+    
+        getLetter() {
+            return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+        }
+    
+        getNumber() {
+            return Math.floor(Math.random() * 10);
+        }
+    
+        createName() {
+            while (this.cache.length < (26 * 26 * 10 * 10 * 10)) {
+                let name =  [
+                    this.getLetter(),
+                    this.getLetter(),
+                    this.getNumber(),
+                    this.getNumber(),
+                    this.getNumber()
+                ].join('');
+                
+                if (!this.cache.includes(name)) {
+                    this.cache.push(name);
+                    break;
+                } 
+            }
+        }
+    }
+
     const shuffle = (lst) => {
         for (let i = lst.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
