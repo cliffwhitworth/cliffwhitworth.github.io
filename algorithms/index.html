@@ -144,6 +144,9 @@
     def is_isogram(string):
         iso_check = set(re.findall(r'\w', string))
         return len(iso_check) == len(re.findall(r'\w', string))
+
+    def is_isogram(string):
+        return len(string) == len(set(string))
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -151,6 +154,10 @@
     Here the \1 is called a backreference. To make sure that the pattern 
     looks for the closing quote exactly the same as the opening one, we 
     can wrap it into a capturing group and backreference it: (['"])(.*?)\1.
+
+    const isogram = s => {
+        return s.length === new Set(s).size
+    }
 
     let str = `He said: "She's the one!".`;
     let regexp = /(['"])(.*?)\1/g;
@@ -318,7 +325,7 @@
         if len(strand_a) != len(strand_b): 
             raise ValueError(f'Strands must have equal lengths')
 
-        return sum([1 for i in range(len(strand_a)) if strand_a[i] != strand_b[i]])
+        return sum(1 for i in range(len(strand_a)) if strand_a[i] != strand_b[i])
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -348,6 +355,15 @@
         a.split('').forEach((_, i) => {
             if (a.split('')[i] != b.split('')[i]) cnt++;
         });
+        return cnt;
+    }
+
+    const hamming = (a, b) => {
+        let cnt = 0;
+        a.split('')
+        .forEach((c, i) => {
+            if (c != b.split('')[i]) cnt++;
+        })
         return cnt;
     }
 </pre>
@@ -401,6 +417,12 @@
 
     def add(moment):
         return moment + timedelta(seconds=10**9)
+
+    def giga(t):
+        return t + timedelta(seconds=1e9)
+    
+    x = giga(datetime(2011, 4, 25, 0, 0))
+    print(x) # 2043-01-01 01:46:40
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -409,6 +431,7 @@
     };
 
     const giga = t => new Date(t.getTime() + (1000000000 * 1000))
+    const giga = t => new Date(t.getTime() + (1e9 * 1e3))
 </pre>
 <h3>C#</h3>
 <pre>
