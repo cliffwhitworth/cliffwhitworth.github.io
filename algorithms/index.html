@@ -472,6 +472,13 @@
                      .map(a => Math.pow(Number(a), number.toString().length))
                      .reduce((a, b) => a + b) === number;
     };
+
+    const armstrong = n => {
+        return n.toString()
+        .split('')
+        .map(i => Number(i)**n.toString().length)
+        .reduce((a, b) => a + b) === n;
+    }
 </pre>
 <h3>C#</h3>
 <pre>
@@ -676,6 +683,20 @@
 
         def grade(self, grade_number):
             return [s[0] for s in self.get_roster() if s[1] == grade_number]
+
+    class School:
+        def __init__(self):
+            self.students = {}
+            
+        @property
+        def roster(self):
+            return [s[0] for s in sorted(self.students.items(), key=lambda student: (student[1], student[0]))]
+            
+        def add(self, name, grade):
+            self.students[name] = grade
+            
+        def grade(self, grade):
+            return sorted(s for s, g in self.students.items() if g == grade)
 </pre>
 <h3>JavaScript</h3>
 <pre>
@@ -717,6 +738,32 @@
             } -->
             
             return JSON.parse(JSON.stringify(Object.entries(this.students).filter(s => s[1] === grade)));
+        }
+    }
+
+    class School {
+        constructor() {
+            this.students = {}
+        }
+        
+        get roster() {
+            let grades = new Set(Object.values(this.students).sort())
+            const sorted_roster = [];
+            grades.forEach(g => {
+                sorted_roster.push(Object.entries(this.students)
+                                  .filter(s => s[1] == g)
+                                  .sort()
+                                  .reduce((arr, val) => arr.concat(val), []));
+            });
+            return JSON.parse(JSON.stringify(sorted_roster));
+        }
+        
+        add(name, grade) {
+            this.students[name] = grade;
+        }
+        
+        grade(grade) {
+            return JSON.parse(JSON.stringify(Object.entries(this.students).filter(g => g[1] === grade).sort()))
         }
     }
 </pre>
