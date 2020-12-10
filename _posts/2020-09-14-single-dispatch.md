@@ -24,7 +24,8 @@ def html_str(arg):
 print(html_str(s))
 ```
 
-Using singledispatch
+Using singledispatch <br />
+singledispatch: A form of generic function dispatch where the implementation is chosen based on the type of a single argument
 ```
 from functools import singledispatch
 
@@ -39,4 +40,25 @@ def html_str(arg):
 encode_html.dispatch(str)
 
 encode_html(s)
+```
+
+Another Example
+```
+@singledispatch
+def another_example(arg):
+    print('String:', arg)
+    
+@another_example.register(int)
+def _(arg):
+    print('Number:', arg)
+    
+@another_example.register(list)
+def _(arg):
+    print('List:')
+    for i, v in enumerate(arg):
+        print(i, v)
+        
+another_example('Hello World!')
+another_example(43)
+another_example([42, 43, 44])
 ```
