@@ -91,29 +91,6 @@ def funk(*args, **kwargs):
 print(funk('Hello', 'World!', Mello='Word', Yellow='Bird'))
 print('Function name:', funk.__name__)
 print('Function doc string:', funk.__doc__)
-from functools import wraps
-
-def my_decorator(fn):
-    print('In my_decorator')
-    @wraps(fn)
-    def my_wrapper(*args, **kwargs):
-        kwargs['Whirled'] = 'Peas'
-        print('In my_wrapper')
-        print(f'{fn.__name__} was passed to my_wrapper; args: {args} and kwargs: {kwargs}')
-        print('my_wrapper joins the args and adds a key:value to kwargs')
-        return fn(' '.join(args), kwargs)
-    
-    return my_wrapper
-
-@my_decorator
-def funk(*args, **kwargs):
-    """funk returns *args and **kwargs after some processing by my_wrapper"""
-    
-    return f'funk returns {args} {kwargs}'
-    
-print(funk('Hello', 'World!', Mello='Word', Yellow='Bird'))
-print('Function name:', funk.__name__)
-print('Function doc string:', funk.__doc__)
 
 # In my_decorator
 # In my_wrapper
