@@ -27,9 +27,9 @@ class Proxy:
         return some_method
 
 class Everything:        
-    def __getattr__(self, func):
-        self.proxy = Proxy(Something()) if func in dir(Something) else Proxy(SomethingElse())
-        return getattr(self.proxy, func)
+    def __getattr__(self, thing):
+        self.proxy = Proxy(Something()) if thing in dir(Something) else Proxy(SomethingElse())
+        return getattr(self.proxy, thing)
 
 
 everything = Everything()
