@@ -11069,7 +11069,7 @@ body {
   height: auto;
   min-height: 45rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 80%, #000 100%), url("../assets/bg-masthead.png");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0.7) 100%, #000 100%), url("../assets/bg-masthead.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11199,5 +11199,5 @@ body {
 }
 
 .footer {
-  padding: 5rem 0;
+  padding: 0.5rem 0;
 }
