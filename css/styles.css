@@ -11080,7 +11080,7 @@ body {
   background-attachment: scroll;
   background-size: cover; */
   background: url("../assets/img/bg-masthead.png") no-repeat center center;
-  background-size: 40% auto; 
+  background-size: contain; 
   opacity: 1;
 }
 .masthead h1, .masthead .h1 {
