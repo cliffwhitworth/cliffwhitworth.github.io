@@ -11069,6 +11069,11 @@ body {
 }
 
 .masthead {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 35rem;
+  padding: 15rem 0;
   background-image: url("../assets/img/bg-masthead.png");
   background-repeat: repeat-y;
   background-size: contain;
